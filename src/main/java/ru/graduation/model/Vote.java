@@ -1,4 +1,4 @@
-package main.java.ru.graduation.model;
+package ru.graduation.model;
 
 import java.time.LocalDate;
 

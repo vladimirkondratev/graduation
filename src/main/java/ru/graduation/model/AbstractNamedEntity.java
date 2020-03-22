@@ -1,4 +1,4 @@
-package main.java.ru.graduation.model;
+package ru.graduation.model;
 
 public abstract class AbstractNamedEntity extends AbstractBaseEntity{
 

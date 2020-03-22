@@ -1,0 +1,7 @@
+ru\graduation\model\AbstractBaseEntity.class
+ru\graduation\model\User.class
+ru\graduation\model\Restaurant.class
+ru\graduation\model\Vote.class
+ru\graduation\model\AbstractNamedEntity.class
+ru\graduation\model\Dish.class
+ru\graduation\model\Role.class

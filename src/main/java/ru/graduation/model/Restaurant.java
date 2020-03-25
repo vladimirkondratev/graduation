@@ -1,9 +1,14 @@
 package ru.graduation.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {
 
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+    @OrderBy("date DESC")
     private List<Menu> menus;
 
     public Restaurant() {

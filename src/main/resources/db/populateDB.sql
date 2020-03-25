@@ -5,7 +5,7 @@ FROM votes;
 DELETE
 FROM users;
 DELETE
-FROM meals;
+FROM dishes;
 DELETE
 FROM menus;
 DELETE
@@ -36,7 +36,7 @@ VALUES ('2020-03-25', 100002),
        ('2020-03-24', 100003);
 
 --IDs 100010 - 100017
-INSERT INTO MEALS (MENU_ID, NAME, PRICE)
+INSERT INTO DISHES (MENU_ID, NAME, PRICE)
 VALUES (100005, 'pizza_ollis_1', 45000),
        (100005, 'pizza_oliis_2', 60000),
        (100006, 'pizza_oliis_3', 80000),

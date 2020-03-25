@@ -4,28 +4,28 @@ import java.util.List;
 
 public class Restaurant extends AbstractNamedEntity {
 
-    private List<Dish> menu;
+    private List<Menu> menus;
 
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, String name, List<Dish> menu) {
+    public Restaurant(Integer id, String name, List<Menu> menus) {
         super(id, name);
-        this.menu = menu;
+        this.menus = menus;
     }
 
-    public List<Dish> getMenu() {
-        return menu;
+    public List<Menu> getMenus() {
+        return menus;
     }
 
-    public void setMenu(List<Dish> menu) {
-        this.menu = menu;
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 
     @Override
     public String toString() {
         return "Restaurant{" +
-                "menu=" + menu +
+                "menus=" + menus +
                 ", name='" + name + '\'' +
                 ", id=" + id +
                 '}';

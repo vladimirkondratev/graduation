@@ -34,6 +34,11 @@ public class DishService {
         return dishRepository.save(dish);
     }
 
+    public void update(Dish dish) {
+        Assert.notNull(dish, "meal must not be null");
+        checkNotFoundWithId(dishRepository.save(dish), dish.getId());
+    }
+
     public int delete(Dish dish) {
         Assert.notNull(dish, "dish must not be null");
         return checkNotFound(dishRepository.delete(dish.getId()), "");

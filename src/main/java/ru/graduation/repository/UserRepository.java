@@ -8,4 +8,5 @@ import ru.graduation.model.User;
 @Repository
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
+
 }

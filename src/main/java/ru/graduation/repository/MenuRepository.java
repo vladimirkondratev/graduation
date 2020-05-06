@@ -13,11 +13,6 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = true)
 public interface MenuRepository extends JpaRepository<Menu, Integer> {
-    @Transactional
-    @Modifying
-    @Query("")
-        //TODO
-    Menu save(Menu menu, int restaurantId);
 
     @Transactional
     @Modifying

@@ -23,13 +23,18 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
+    public void update(Restaurant restaurant) {
+        Assert.notNull(restaurant, "restaurant must not be null");
+        checkNotFoundWithId(restaurantRepository.save(restaurant), restaurant.getId());
+    }
+
     public void delete(int id) {
-        Assert.notNull(id, "restaurant id must not be null");
-        //checkNotFoundWithId(repository.deleteById(id), id);
+        //Assert.notNull(id, "restaurant id must not be null");
+        checkNotFoundWithId(restaurantRepository.delete(id), id);
     }
 
     public Restaurant get(int id) {
-        Assert.notNull(id, "restaurant id must not be null");
+        //Assert.notNull(id, "restaurant id must not be null");
         return checkNotFoundWithId(restaurantRepository.findById(id).orElse(null), id);
     }
 
@@ -37,8 +42,4 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    public void update(Restaurant restaurant) {
-        Assert.notNull(restaurant, "restaurant must not be null");
-        checkNotFoundWithId(restaurantRepository.save(restaurant), restaurant.getId());
-    }
 }

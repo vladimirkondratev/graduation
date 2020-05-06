@@ -1,8 +1,10 @@
 package ru.graduation.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.graduation.model.Menu;
+import ru.graduation.model.Restaurant;
 import ru.graduation.repository.MenuRepository;
 import ru.graduation.repository.RestaurantRepository;
 
@@ -23,32 +25,35 @@ public class MenuService {
         this.restaurantRepository = restaurantRepository;
     }
 
+    @Transactional
     public Menu create(Menu menu, Integer restaurantId) {
         Assert.notNull(menu, "menu must not be null");
         Assert.notNull(restaurantId, "restaurant must not be null");
-        return menuRepository.save(menu, restaurantId);
+        Restaurant restaurant = checkNotFoundWithId(restaurantRepository.getOne(restaurantId), restaurantId);
+        menu.setRestaurant(restaurant);
+        return menuRepository.save(menu);
     }
 
     public void update(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
-        Assert.notNull(restaurantId, "restaurant id must not be null");
-        checkNotFoundWithId(menuRepository.save(menu, restaurantId), menu.getId());
+        //Assert.notNull(restaurantId, "restaurant id must not be null");
+        checkNotFoundWithId(menuRepository.save(menu), menu.getId());
     }
 
-    public int delete(int id, int restaurantId) {
-        Assert.notNull(id, "menu id must not be null");
-        Assert.notNull(id, "restaurant id must not be null");
-        return checkNotFound(menuRepository.delete(id, restaurantId), "");
+    public int delete(int menuId, int restaurantId) {
+        //Assert.notNull(menuId, "menu id must not be null");
+        //Assert.notNull(restaurantId, "restaurant id must not be null");
+        return checkNotFound(menuRepository.delete(menuId, restaurantId), "");
     }
 
-    public Menu get(int id, int restaurantId) {
-        Assert.notNull(id, "menu id must not be null");
-        Assert.notNull(restaurantId, "restaurant id must not be null");
-        return checkNotFoundWithId(menuRepository.get(id, restaurantId), id);
+    public Menu get(int menuId, int restaurantId) {
+        //Assert.notNull(menuId, "menu id must not be null");
+        //Assert.notNull(restaurantId, "restaurant id must not be null");
+        return checkNotFoundWithId(menuRepository.get(menuId, restaurantId), menuId);
     }
 
     public List<Menu> getAll(int restaurantId) {
-        Assert.notNull(restaurantId, "restaurant id must not be null");
+        //Assert.notNull(restaurantId, "restaurant id must not be null");
         return menuRepository.getAll(restaurantId);
     }
 }

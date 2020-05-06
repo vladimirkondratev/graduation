@@ -7,6 +7,7 @@ import ru.graduation.repository.UserRepository;
 
 import java.util.List;
 
+import static ru.graduation.util.ValidationUtil.checkNotFound;
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -18,34 +19,30 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    private UserRepository repository;
-
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
-        return repository.save(user);
+        return userRepository.save(user);
     }
 
     public void delete(int id) {
-        Assert.notNull(id, "user id must not be null");
-        //checkNotFoundWithId(repository.deleteById(id), id);
+        checkNotFoundWithId(userRepository.delete(id), id);
     }
 
     public User get(int id) {
-        Assert.notNull(id, "user id must not be null");
-        return checkNotFoundWithId(repository.findById(id).orElse(null), id);
+        return checkNotFoundWithId(userRepository.findById(id).orElse(null), id);
     }
 
     public User getByEmail(String email) {
-        //return checkNotFound(repository.getByEmail(email), "email=" + email);
-        return null;
+        Assert.notNull(email, "email must not be null");
+        return checkNotFound(userRepository.getByEmail(email), "email=" + email);
     }
 
     public List<User> getAll() {
-        return repository.findAll();
+        return userRepository.findAll();
     }
 
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(repository.save(user), user.getId());
+        checkNotFoundWithId(userRepository.save(user), user.getId());
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "menus", uniqueConstraints = {@UniqueConstraint(columnNames = {"date", "restaurant_id"}, name = "menu_restaurant_idx")})
-public class Menu extends AbstractBaseEntity{
+public class Menu extends AbstractBaseEntity {
 
     @Column(name = "date", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
@@ -27,6 +27,10 @@ public class Menu extends AbstractBaseEntity{
     private Restaurant restaurant;
 
     public Menu() {
+    }
+
+    public Menu(Menu menu) {
+        this(menu.id, menu.date, menu.dishes);
     }
 
     public Menu(Integer id, LocalDate date, List<Dish> dishes) {

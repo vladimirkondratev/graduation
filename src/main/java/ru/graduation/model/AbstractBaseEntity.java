@@ -1,5 +1,6 @@
 package ru.graduation.model;
 
+import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
@@ -43,10 +44,10 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || !getClass().equals(Hibernate.getClass(o))) {
             return false;
         }
         AbstractBaseEntity that = (AbstractBaseEntity) o;

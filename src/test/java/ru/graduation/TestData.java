@@ -10,11 +10,11 @@ import java.util.List;
 public class TestData {
     public static final int SEQ = 100_000;
 
-    public static final int USER_ID = SEQ;
-    public static final int ADMIN_ID = SEQ + 1;
+    public static final int ADMIN_ID = SEQ;
+    public static final int USER_ID = SEQ + 1;
 
-    public static final User USER = new User(USER_ID, "user", "user@user.ru", "password", Role.ROLE_USER);
-    public static final User ADMIN = new User(ADMIN_ID, "admin", "admin@admin.ru", "password", Role.ROLE_ADMIN);
+    public static final User ADMIN = new User(ADMIN_ID, "admin", "admin@email.ru", "password", Role.ROLE_ADMIN, Role.ROLE_USER);
+    public static final User USER = new User(USER_ID, "user", "user@email.ru", "password", Role.ROLE_USER);
 
     public static final Dish DISH_1 = new Dish(100010, "pizza_ollis_1", 45000);
     public static final Dish DISH_2 = new Dish(100011, "pizza_ollis_2", 60000);
@@ -41,6 +41,8 @@ public class TestData {
     public static final Vote VOTE_4 = new Vote(100021, LocalDate.of(2020,03,24), ADMIN, RESTAURANT_1);
     public static final Vote VOTE_5 = new Vote(100022, LocalDate.of(2020,03,23), USER, RESTAURANT_2);
     public static final Vote VOTE_6 = new Vote(100023, LocalDate.of(2020,03,23), ADMIN, RESTAURANT_2);
+
+    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator("registered", "votes");
 
     public static User getNewUser() {
         return new User(null, "New", "new@gmail.com", "newPass", false, new Date(), Collections.singleton(Role.ROLE_USER));

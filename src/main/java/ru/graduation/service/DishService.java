@@ -10,7 +10,6 @@ import ru.graduation.repository.MenuRepository;
 
 import java.util.List;
 
-import static ru.graduation.util.ValidationUtil.checkNotFound;
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -40,10 +39,11 @@ public class DishService {
         checkNotFoundWithId(dishRepository.save(dish), dish.getId());
     }
 
-    public int delete(Dish dish, int menuId) {
+    public void delete(Dish dish, int menuId) {
         Assert.notNull(dish, "dish must not be null");
  //       Assert.notNull(menuId, "menu id must not be null");
-        return checkNotFound(dishRepository.delete(dish.getId(), menuId), "");
+        int dishId = dish.getId();
+        checkNotFoundWithId(dishRepository.delete(dishId, menuId) != 0, dishId);
     }
 
     public Dish get(int dishId, int menuId) {

@@ -10,16 +10,18 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
+
     <context:component-scan base-package="ru.graduation.repository"/>
     <jpa:repositories base-package="ru.graduation.repository"/>
 
-    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
+    <jdbc:initialize-database enabled="${database.init}">
         <jdbc:script location="${jdbc.initLocation}"/>
         <jdbc:script encoding="utf-8" location="${jdbc.populateDB}"/>
     </jdbc:initialize-database>
 
+    <!--no pooling-->
     <bean id="dataSource"
-          class="org.apache.tomcat.jdbc.pool.DataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="org.hsqldb.jdbcDriver"
           p:url="${database.url}"
           p:username="${database.username}"

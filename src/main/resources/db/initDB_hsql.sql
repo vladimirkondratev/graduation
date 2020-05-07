@@ -1,9 +1,9 @@
 DROP TABLE user_roles IF EXISTS;
 DROP TABLE votes IF EXISTS;
 DROP TABLE dishes IF EXISTS;
-DROP TABLE users IF EXISTS;
 DROP TABLE menus IF EXISTS;
 DROP TABLE restaurants IF EXISTS;
+DROP TABLE users IF EXISTS;
 DROP SEQUENCE GLOBAL_SEQ IF EXISTS;
 
 CREATE SEQUENCE GLOBAL_SEQ AS INTEGER START WITH 100000;
@@ -54,7 +54,7 @@ CREATE TABLE menus
     CONSTRAINT menu_restaurant_idx UNIQUE (date, restaurant_id),
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
-CREATE INDEX menus_restaurant_actual_idx ON menus (restaurant_id, date);
+CREATE UNIQUE INDEX menus_restaurant_actual_idx ON menus (restaurant_id, date);
 
 CREATE TABLE dishes
 (

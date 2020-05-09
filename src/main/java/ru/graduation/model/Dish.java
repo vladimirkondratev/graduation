@@ -2,17 +2,17 @@ package ru.graduation.model;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "dishes")
 public class Dish extends AbstractNamedEntity {
 
     @Column(name = "price", nullable = false)
-    @Range(min = 0, max = 100000000)
+    @Positive
     private int price;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +33,7 @@ public class Dish extends AbstractNamedEntity {
         this.price = price;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 

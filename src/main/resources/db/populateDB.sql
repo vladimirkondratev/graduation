@@ -38,11 +38,11 @@ VALUES ('2020-03-25', 100002),
 --IDs 100010 - 100017
 INSERT INTO DISHES (MENU_ID, NAME, PRICE)
 VALUES (100005, 'pizza_ollis_1', 45000),
-       (100005, 'pizza_oliis_2', 60000),
-       (100006, 'pizza_oliis_3', 80000),
-       (100006, 'pizza_oliis_4', 30000),
-       (100006, 'pizza_oliis_5', 25000),
-       (100007, 'pizza_oliis_6', 48000),
+       (100005, 'pizza_ollis_2', 60000),
+       (100006, 'pizza_ollis_3', 80000),
+       (100006, 'pizza_ollis_4', 30000),
+       (100006, 'pizza_ollis_5', 25000),
+       (100007, 'pizza_ollis_6', 48000),
        (100008, 'pizza_DoDo_1', 36000),
        (100008, 'pizza_DoDo_2', 50000);
 

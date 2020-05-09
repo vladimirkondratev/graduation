@@ -10,7 +10,6 @@ import ru.graduation.repository.RestaurantRepository;
 
 import java.util.List;
 
-import static ru.graduation.util.ValidationUtil.checkNotFound;
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
@@ -37,13 +36,14 @@ public class MenuService {
     public void update(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
         //Assert.notNull(restaurantId, "restaurant id must not be null");
+        menu.setRestaurant(restaurantRepository.getOne(restaurantId));
         checkNotFoundWithId(menuRepository.save(menu), menu.getId());
     }
 
-    public int delete(int menuId, int restaurantId) {
+    public void delete(int menuId, int restaurantId) {
         //Assert.notNull(menuId, "menu id must not be null");
         //Assert.notNull(restaurantId, "restaurant id must not be null");
-        return checkNotFound(menuRepository.delete(menuId, restaurantId), "");
+        checkNotFoundWithId(menuRepository.delete(menuId, restaurantId) != 0, restaurantId);
     }
 
     public Menu get(int menuId, int restaurantId) {
@@ -52,7 +52,7 @@ public class MenuService {
         return checkNotFoundWithId(menuRepository.get(menuId, restaurantId), menuId);
     }
 
-    public List<Menu> getAll(int restaurantId) {
+    public List<Menu> getAllForRestaurant(int restaurantId) {
         //Assert.notNull(restaurantId, "restaurant id must not be null");
         return menuRepository.getAll(restaurantId);
     }

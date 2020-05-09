@@ -15,12 +15,11 @@ public class Restaurant extends AbstractNamedEntity {
     }
 
     public Restaurant(Restaurant restaurant){
-        this(restaurant.id, restaurant.name, restaurant.menus);
+        this(restaurant.id, restaurant.name);
     }
 
-    public Restaurant(Integer id, String name, List<Menu> menus) {
+    public Restaurant(Integer id, String name) {
         super(id, name);
-        this.menus = menus;
     }
 
     public List<Menu> getMenus() {
@@ -34,7 +33,6 @@ public class Restaurant extends AbstractNamedEntity {
     @Override
     public String toString() {
         return "Restaurant{" +
-                "menus=" + menus +
                 ", name='" + name + '\'' +
                 ", id=" + id +
                 '}';

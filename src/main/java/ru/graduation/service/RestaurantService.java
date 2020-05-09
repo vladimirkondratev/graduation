@@ -30,7 +30,7 @@ public class RestaurantService {
 
     public void delete(int id) {
         //Assert.notNull(id, "restaurant id must not be null");
-        checkNotFoundWithId(restaurantRepository.delete(id), id);
+        checkNotFoundWithId(restaurantRepository.delete(id) !=0, id);
     }
 
     public Restaurant get(int id) {

@@ -30,13 +30,12 @@ public class Menu extends AbstractBaseEntity {
     }
 
     public Menu(Menu menu) {
-        this(menu.id, menu.date, menu.dishes);
+        this(menu.id, menu.date);
     }
 
-    public Menu(Integer id, LocalDate date, List<Dish> dishes) {
+    public Menu(Integer id, LocalDate date) {
         super(id);
         this.date = date;
-        this.dishes = dishes;
     }
 
     public LocalDate getDate() {
@@ -67,7 +66,6 @@ public class Menu extends AbstractBaseEntity {
     public String toString() {
         return "Menu{" +
                 "date=" + date +
-                ", dishes=" + dishes +
                 ", id=" + id +
                 '}';
     }

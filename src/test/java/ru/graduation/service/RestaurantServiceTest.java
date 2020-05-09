@@ -1,0 +1,70 @@
+package ru.graduation.service;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import ru.graduation.model.Restaurant;
+import ru.graduation.util.exeption.NotFoundException;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static ru.graduation.TestData.*;
+
+@SpringJUnitConfig(locations = {
+        "classpath:spring/spring-app.xml",
+        "classpath:spring/spring-db.xml"
+})
+@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+class RestaurantServiceTest {
+
+    @Autowired
+    private RestaurantService service;
+
+    @Test
+    void create() {
+        Restaurant newRestaurant = getNewRestaurant();
+        Restaurant created = service.create(newRestaurant);
+        int newId = created.getId();
+        newRestaurant.setId(newId);
+        RESTAURANT_MATCHER.assertMatch(created, newRestaurant);
+        RESTAURANT_MATCHER.assertMatch(service.get(newId), newRestaurant);
+    }
+
+    @Test
+    void update() {
+        Restaurant updated = getUpdatedRestaurant();
+        service.update(new Restaurant(updated));
+        RESTAURANT_MATCHER.assertMatch(service.get(RESTAURANT1_ID), updated);
+    }
+
+    @Test
+    void delete() {
+        service.delete(RESTAURANT1_ID);
+        assertThrows(NotFoundException.class, () -> service.get(RESTAURANT1_ID));
+    }
+
+    @Test
+    void deletedNotFound() throws Exception {
+        assertThrows(NotFoundException.class, () -> service.delete(1));
+    }
+
+    @Test
+    void get() {
+        Restaurant restaurant = service.get(RESTAURANT1_ID);
+        RESTAURANT_MATCHER.assertMatch(restaurant, RESTAURANT_1);
+    }
+
+    @Test
+    void getNotFound() throws Exception {
+        assertThrows(NotFoundException.class, () -> service.get(1));
+    }
+
+    @Test
+    void getAll() {
+        List<Restaurant> all = service.getAll();
+        RESTAURANT_MATCHER.assertMatch(all, RESTAURANT_1, RESTAURANT_2, RESTAURANT_3);
+    }
+}

@@ -35,7 +35,6 @@ public class VoteService {
     @Transactional
     public Vote create(Vote vote, int userId, int restaurantId) {
         Assert.notNull(vote, "vote must not be null");
-//        Assert.notNull(userId, "user id must not be null");
         User user = userRepository.getOne(userId);
         vote.setUser(user);
         Restaurant restaurant = restaurantRepository.getOne(restaurantId);
@@ -46,21 +45,16 @@ public class VoteService {
     @Transactional
     public void update(Vote vote, int userId) {
         Assert.notNull(vote, "vote must not be null");
-//        Assert.notNull(userId, "user id must not be null");
         int voteId = vote.getId();
         checkNotFoundWithId(voteRepository.get(voteId, userId), voteId);
         checkNotFoundWithId(voteRepository.save(vote), voteId);
     }
 
     public int delete(int voteId, int userId) {
-//        Assert.notNull(voteId, "vote id must not be null");
-//        Assert.notNull(userId, "user id must not be null");
         return checkNotFound(voteRepository.delete(voteId, userId), "");
     }
 
     public Vote get(int voteId, int userId) {
-//        Assert.notNull(voteId, "vote id must not be null");
-//        Assert.notNull(userId, "user id must not be null");
         return checkNotFoundWithId(voteRepository.get(voteId, userId), voteId);
     }
 

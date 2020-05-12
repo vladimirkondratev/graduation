@@ -35,25 +35,19 @@ public class MenuService {
 
     public void update(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
-        //Assert.notNull(restaurantId, "restaurant id must not be null");
         menu.setRestaurant(restaurantRepository.getOne(restaurantId));
         checkNotFoundWithId(menuRepository.save(menu), menu.getId());
     }
 
     public void delete(int menuId, int restaurantId) {
-        //Assert.notNull(menuId, "menu id must not be null");
-        //Assert.notNull(restaurantId, "restaurant id must not be null");
         checkNotFoundWithId(menuRepository.delete(menuId, restaurantId) != 0, restaurantId);
     }
 
     public Menu get(int menuId, int restaurantId) {
-        //Assert.notNull(menuId, "menu id must not be null");
-        //Assert.notNull(restaurantId, "restaurant id must not be null");
         return checkNotFoundWithId(menuRepository.get(menuId, restaurantId), menuId);
     }
 
     public List<Menu> getAllForRestaurant(int restaurantId) {
-        //Assert.notNull(restaurantId, "restaurant id must not be null");
         return menuRepository.getAll(restaurantId);
     }
 }

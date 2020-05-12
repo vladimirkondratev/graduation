@@ -27,7 +27,6 @@ public class DishService {
     @Transactional
     public Dish create(Dish dish, int menuId) {
         Assert.notNull(dish, "dish must not be null");
-//        Assert.notNull(menuId, "menu id must not be null");
         Menu menu = checkNotFoundWithId(menuRepository.getOne(menuId), menuId);
         dish.setMenu(menu);
         return dishRepository.save(dish);
@@ -35,20 +34,15 @@ public class DishService {
 
     public void update(Dish dish, int menuId) {
         Assert.notNull(dish, "meal must not be null");
-        //Assert.notNull(menuId, "menu id must not be null");
         dish.setMenu(menuRepository.getOne(menuId));
         checkNotFoundWithId(dishRepository.save(dish), dish.getId());
     }
 
     public void delete(int dishId, int menuId) {
-   //     Assert.notNull(dish, "dish must not be null");
- //       Assert.notNull(menuId, "menu id must not be null");
         checkNotFoundWithId(dishRepository.delete(dishId, menuId) != 0, dishId);
     }
 
     public Dish get(int dishId, int menuId) {
-//        Assert.notNull(dishId, "dish id must not be null");
-//        Assert.notNull(menuId, "menu id must not be null");
         return checkNotFoundWithId(dishRepository.get(dishId, menuId), dishId);
     }
 

@@ -8,6 +8,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.graduation.model.Restaurant;
 import ru.graduation.util.exeption.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -66,5 +67,12 @@ class RestaurantServiceTest {
     void getAll() {
         List<Restaurant> all = service.getAll();
         RESTAURANT_MATCHER.assertMatch(all, RESTAURANT_1, RESTAURANT_2, RESTAURANT_3);
+    }
+
+    @Test
+    void getAllForDate()
+    {
+        List<Restaurant> all = service.getAllRestaurantWithMenuAndMealForDate(LocalDate.of(2020, 03, 25));
+        RESTAURANT_MATCHER.assertMatch(all, RESTAURANT_2, RESTAURANT_1);
     }
 }

@@ -14,9 +14,9 @@ public class Menu extends AbstractBaseEntity {
 
     @Column(name = "date", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
 
-    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
     @OrderBy("name")
     private List<Dish> dishes;
 

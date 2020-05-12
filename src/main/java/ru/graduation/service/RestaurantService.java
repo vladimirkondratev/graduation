@@ -5,6 +5,7 @@ import org.springframework.util.Assert;
 import ru.graduation.model.Restaurant;
 import ru.graduation.repository.RestaurantRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
@@ -38,6 +39,10 @@ public class RestaurantService {
 
     public List<Restaurant> getAll() {
         return restaurantRepository.findAll();
+    }
+
+    public List<Restaurant> getAllRestaurantWithMenuAndMealForDate(LocalDate date){
+        return restaurantRepository.findAllByMenusDate(date);
     }
 
 }

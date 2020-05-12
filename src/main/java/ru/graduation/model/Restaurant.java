@@ -1,15 +1,27 @@
 package ru.graduation.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "restaurants")
+@NamedEntityGraph(
+        name = "graph.restaurant.menus",
+        attributeNodes = {
+                @NamedAttributeNode(value = "menus", subgraph = "graph.restaurant.menus.dishes")
+        },
+        subgraphs = {
+                @NamedSubgraph(
+                        name = "graph.restaurant.menus.dishes",
+                        attributeNodes = {@NamedAttributeNode("dishes")}
+                )
+        }
+)
 public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     @OrderBy("date DESC")
-    private List<Menu> menus;
+    private Set<Menu> menus;
 
     public Restaurant() {
     }
@@ -22,11 +34,11 @@ public class Restaurant extends AbstractNamedEntity {
         super(id, name);
     }
 
-    public List<Menu> getMenus() {
+    public Set<Menu> getMenus() {
         return menus;
     }
 
-    public void setMenus(List<Menu> menus) {
+    public void setMenus(Set<Menu> menus) {
         this.menus = menus;
     }
 

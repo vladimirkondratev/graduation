@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.graduation.model.Vote;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -27,4 +28,7 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
     @Query("SELECT v FROM Vote v WHERE v.restaurant.id=:restaurantId")
     List<Vote> getAllByRestaurant(@Param("restaurantId") int restaurantId);
+
+    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
+    Vote getForUserAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
 }

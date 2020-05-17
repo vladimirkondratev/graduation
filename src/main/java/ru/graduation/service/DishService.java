@@ -10,9 +10,11 @@ import ru.graduation.repository.MenuRepository;
 
 import java.util.List;
 
+import static ru.graduation.util.ValidationUtil.checkNotFound;
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
+@Transactional(readOnly = true)
 public class DishService {
 
     private final DishRepository dishRepository;
@@ -25,29 +27,35 @@ public class DishService {
     }
 
     @Transactional
-    public Dish create(Dish dish, int menuId) {
+    public Dish create(Dish dish, int menuId, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
-        Menu menu = checkNotFoundWithId(menuRepository.getOne(menuId), menuId);
+        Menu menu = checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
+        //Menu menu = checkNotFoundWithId(menuRepository.getOne(menuId), menuId);
         dish.setMenu(menu);
         return dishRepository.save(dish);
     }
 
-    public void update(Dish dish, int menuId) {
+    @Transactional
+    public void update(Dish dish, int menuId, int restaurantId) {
         Assert.notNull(dish, "meal must not be null");
-        dish.setMenu(menuRepository.getOne(menuId));
+        Menu menu = checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
+        dish.setMenu(menu);
         checkNotFoundWithId(dishRepository.save(dish), dish.getId());
     }
 
-    public void delete(int dishId, int menuId) {
+    @Transactional
+    public void delete(int dishId, int menuId, int restaurantId) {
+        checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
         checkNotFoundWithId(dishRepository.delete(dishId, menuId) != 0, dishId);
     }
 
-    public Dish get(int dishId, int menuId) {
+    public Dish get(int dishId, int menuId, int restaurantId) {
+        checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
         return checkNotFoundWithId(dishRepository.get(dishId, menuId), dishId);
     }
 
     public List<Dish> getAllForMenu(int menuId) {
-        Assert.notNull(menuId, "menu id must not be null");
+        //Assert.notNull(menuId, "menu id must not be null");
         return dishRepository.getAllForMenu(menuId);
     }
 }

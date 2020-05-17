@@ -1,5 +1,6 @@
-package ru.graduation;
+package ru.graduation.testdata;
 
+import ru.graduation.TestMatcher;
 import ru.graduation.model.Role;
 import ru.graduation.model.User;
 
@@ -16,7 +17,7 @@ public class UserTestData {
     public static final User USER = new User(USER_ID, "user", "user@email.ru", "password", Role.ROLE_USER);
 
 
-    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator("registered", "votes");
+    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator(User.class, "registered", "votes");
 
 
     public static User getNewUser() {

@@ -1,10 +1,11 @@
-package ru.graduation;
+package ru.graduation.testdata;
 
+import ru.graduation.TestMatcher;
 import ru.graduation.model.Dish;
 
 public class DishTestData {
 
-    public static TestMatcher<Dish> DISH_MATCHER = TestMatcher.usingFieldsComparator("menu");
+    public static TestMatcher<Dish> DISH_MATCHER = TestMatcher.usingFieldsComparator(Dish.class,"menu");
 
     public static final int DISH_1_ID = 100010;
     public static final Dish DISH_1 = new Dish(DISH_1_ID, "pizza_ollis_1", 45000);

@@ -5,15 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import ru.graduation.MenuTestData;
-import ru.graduation.RestaurantTestData;
+import ru.graduation.testdata.MenuTestData;
+import ru.graduation.testdata.RestaurantTestData;
 import ru.graduation.model.Dish;
 import ru.graduation.util.exeption.NotFoundException;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.graduation.DishTestData.*;
+import static ru.graduation.testdata.DishTestData.*;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml",

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import ru.graduation.RestaurantTestData;
+import ru.graduation.testdata.RestaurantTestData;
 import ru.graduation.model.Restaurant;
 import ru.graduation.util.exeption.NotFoundException;
 
@@ -70,8 +70,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    void getAllForDate()
-    {
+    void getAllForDate() {
         List<Restaurant> all = service.getAllRestaurantWithMenuAndMealForDate(LocalDate.of(2020, 3, 25));
         RestaurantTestData.RESTAURANT_MATCHER.assertMatch(all, RestaurantTestData.RESTAURANT_2, RestaurantTestData.RESTAURANT_1);
     }

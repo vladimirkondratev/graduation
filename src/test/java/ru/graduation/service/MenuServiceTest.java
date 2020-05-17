@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import ru.graduation.MenuTestData;
-import ru.graduation.RestaurantTestData;
+import ru.graduation.testdata.MenuTestData;
+import ru.graduation.testdata.RestaurantTestData;
 import ru.graduation.model.Menu;
 import ru.graduation.util.exeption.NotFoundException;
 

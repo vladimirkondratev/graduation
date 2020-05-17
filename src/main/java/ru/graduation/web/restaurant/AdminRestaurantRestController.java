@@ -2,7 +2,6 @@ package ru.graduation.web.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,14 +32,17 @@ public class AdminRestaurantRestController {
 
     static final String DISH_REST_URL = MENUS_REST_URL + "/{menuId}/dishes";
 
-    @Autowired
-    private RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
 
-    @Autowired
-    private MenuService menuService;
+    private final MenuService menuService;
 
-    @Autowired
-    private DishService dishService;
+    private final DishService dishService;
+
+    public AdminRestaurantRestController(RestaurantService restaurantService, MenuService menuService, DishService dishService) {
+        this.restaurantService = restaurantService;
+        this.menuService = menuService;
+        this.dishService = dishService;
+    }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {

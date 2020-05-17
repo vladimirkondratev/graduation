@@ -13,7 +13,7 @@ import ru.graduation.util.exeption.NotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.graduation.TestData.*;
+import static ru.graduation.UserTestData.*;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml",

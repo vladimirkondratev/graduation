@@ -1,5 +1,6 @@
 package ru.graduation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,7 +17,7 @@ public class Menu extends AbstractBaseEntity {
     @NotNull
     private LocalDate date = LocalDate.now();
 
-    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
     @OrderBy("name")
     private List<Dish> dishes;
 
@@ -24,6 +25,7 @@ public class Menu extends AbstractBaseEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
+    @JsonIgnore
     private Restaurant restaurant;
 
     public Menu() {

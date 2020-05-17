@@ -72,7 +72,7 @@ class RestaurantServiceTest {
     @Test
     void getAllForDate()
     {
-        List<Restaurant> all = service.getAllRestaurantWithMenuAndMealForDate(LocalDate.of(2020, 03, 25));
+        List<Restaurant> all = service.getAllRestaurantWithMenuAndMealForDate(LocalDate.of(2020, 3, 25));
         RESTAURANT_MATCHER.assertMatch(all, RESTAURANT_2, RESTAURANT_1);
     }
 }

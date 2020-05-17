@@ -29,6 +29,7 @@ public class UserRestaurantRestController {
     @GetMapping
     public List<Restaurant> getAll() {
         log.info("getAll");
-        return restaurantService.getAllRestaurantWithMenuAndMealForDate(LocalDate.now());
+        //return restaurantService.getAllRestaurantWithMenuAndMealForDate(LocalDate.now());
+        return restaurantService.getAllRestaurantWithMenuAndMealForDate(LocalDate.of(2020, 3, 25));
     }
 }

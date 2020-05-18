@@ -88,7 +88,7 @@ public class AdminRestaurantRestController {
         Menu created = menuService.create(menu, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + MENUS_REST_URL + "/{menuId}")
-                .buildAndExpand(created.getId()).toUri();
+                .buildAndExpand(restaurantId, created.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
@@ -116,7 +116,7 @@ public class AdminRestaurantRestController {
         Dish created = dishService.create(dish, menuId, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + DISH_REST_URL + "/{dishId}")
-                .buildAndExpand(created.getId()).toUri();
+                .buildAndExpand(restaurantId, menuId, created.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 

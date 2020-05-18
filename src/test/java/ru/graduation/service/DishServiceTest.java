@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import ru.graduation.model.Dish;
+import ru.graduation.testdata.DishTestData;
 import ru.graduation.testdata.MenuTestData;
 import ru.graduation.testdata.RestaurantTestData;
-import ru.graduation.model.Dish;
 import ru.graduation.util.exeption.NotFoundException;
 
 import java.util.List;
@@ -27,7 +28,7 @@ class DishServiceTest {
 
     @Test
     void create() {
-        Dish newDish = getNewDish();
+        Dish newDish = DishTestData.getNew();
         Dish created = service.create(new Dish(newDish), MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID);
         int newId = created.getId();
         newDish.setId(newId);
@@ -36,7 +37,7 @@ class DishServiceTest {
 
     @Test
     void update() {
-        Dish updated = getUpdatedDish();
+        Dish updated = DishTestData.getUpdated();
         service.update(updated, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID);
         DISH_MATCHER.assertMatch(service.get(updated.getId(), MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID), updated);
     }

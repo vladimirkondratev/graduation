@@ -1,5 +1,6 @@
 package ru.graduation.repository;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,8 +21,8 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
     @Query("DELETE FROM Vote v WHERE v.id=:voteId AND v.user.id=:userId")
     int delete(@Param("voteId") int voteId, @Param("userId") int userId);
 
-    @Query("SELECT v FROM Vote v WHERE v.id=:voteId AND v.user.id=:userId")
-    Vote get(@Param("voteId") int dishId, @Param("userId") int userId);
+//    @Query("SELECT v FROM Vote v WHERE v.id=:voteId AND v.user.id=:userId")
+//    Vote get(@Param("voteId") int dishId, @Param("userId") int userId);
 
     @Query("SELECT v FROM Vote v WHERE v.user.id=:userId")
     List<Vote> getAllByUser(@Param("userId") int userId);
@@ -29,6 +30,15 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
     @Query("SELECT v FROM Vote v WHERE v.restaurant.id=:restaurantId")
     List<Vote> getAllByRestaurant(@Param("restaurantId") int restaurantId);
 
-    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
-    Vote getForUserAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
+    //    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
+//    Vote getForUserAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
+
+    @EntityGraph(attributePaths = {"restaurant", "user"}, type = EntityGraph.EntityGraphType.LOAD)
+    Vote findByUserIdAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
+
+    //    @Query("SELECT v FROM Vote v WHERE v.date=:date")
+//    List<Vote> getAllForDate(@Param("date") LocalDate date);
+
+    @EntityGraph(attributePaths = {"restaurant", "user"}, type = EntityGraph.EntityGraphType.LOAD)
+    List<Vote> findByDate(@Param("date") LocalDate date);
 }

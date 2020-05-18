@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.graduation.testdata.MenuTestData.*;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT1_ID;
+import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1_ID;
 
 @SpringJUnitConfig(locations = {
         "classpath:spring/spring-app.xml",
@@ -28,7 +28,7 @@ class MenuServiceTest {
     @Test
     void create() {
         Menu newMenu = MenuTestData.getNew();
-        Menu created = service.create(new Menu(newMenu), RESTAURANT1_ID);
+        Menu created = service.create(new Menu(newMenu), RESTAURANT_1_ID);
         int newId = created.getId();
         newMenu.setId(newId);
         MENU_MATCHER.assertMatch(created, newMenu);
@@ -37,35 +37,35 @@ class MenuServiceTest {
     @Test
     void update() {
         Menu updated = MenuTestData.getUpdated();
-        service.update(updated, RESTAURANT1_ID);
-        MENU_MATCHER.assertMatch(service.get(updated.getId(), RESTAURANT1_ID), updated);
+        service.update(updated, RESTAURANT_1_ID);
+        MENU_MATCHER.assertMatch(service.get(updated.getId(), RESTAURANT_1_ID), updated);
     }
 
     @Test
     void delete() {
-        service.delete(MENU_1_ID, RESTAURANT1_ID);
-        assertThrows(NotFoundException.class, () -> service.get(MENU_1.getId(), RESTAURANT1_ID));
+        service.delete(MENU_1_ID, RESTAURANT_1_ID);
+        assertThrows(NotFoundException.class, () -> service.get(MENU_1.getId(), RESTAURANT_1_ID));
     }
 
     @Test
     void deletedNotFound() throws Exception {
-        assertThrows(NotFoundException.class, () -> service.delete(1, RESTAURANT1_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(1, RESTAURANT_1_ID));
     }
 
     @Test
     void get() {
-        Menu menu = service.get(MENU_1_ID, RESTAURANT1_ID);
+        Menu menu = service.get(MENU_1_ID, RESTAURANT_1_ID);
         MENU_MATCHER.assertMatch(menu, MENU_1);
     }
 
     @Test
     void getNotFound() throws Exception {
-        assertThrows(NotFoundException.class, () -> service.get(1, RESTAURANT1_ID));
+        assertThrows(NotFoundException.class, () -> service.get(1, RESTAURANT_1_ID));
     }
 
     @Test
     void getAllForRestaurant() {
-        List<Menu> menus = service.getAllForRestaurant(RESTAURANT1_ID);
+        List<Menu> menus = service.getAllForRestaurant(RESTAURANT_1_ID);
         MENU_MATCHER.assertMatch(menus, MENU_1, MENU_2, MENU_3);
     }
 }

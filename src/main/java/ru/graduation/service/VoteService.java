@@ -15,7 +15,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 import static ru.graduation.util.ValidationUtil.checkNotFound;
-import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class VoteService {
@@ -36,7 +35,7 @@ public class VoteService {
 
     @Transactional
     public Vote doVote(int userId, int restaurantId){
-        Vote vote = voteRepository.getForUserAndDate(userId, LocalDate.now());
+        Vote vote = voteRepository.findByUserIdAndDate(userId, LocalDate.now());
         User user = userRepository.getOne(userId);
         Restaurant restaurant = restaurantRepository.getOne(restaurantId);
         if (vote == null){
@@ -73,16 +72,23 @@ public class VoteService {
         return checkNotFound(voteRepository.delete(voteId, userId), "");
     }
 
-    public Vote get(int voteId, int userId) {
-        return checkNotFoundWithId(voteRepository.get(voteId, userId), voteId);
-    }
+//    public Vote get(int voteId, int userId) {
+//        return checkNotFoundWithId(voteRepository.get(voteId, userId), voteId);
+//    }
 
-    public Vote getForUserAndDate(int userId, LocalDate day){
-        return voteRepository.getForUserAndDate(userId, day);
+    public Vote getForUserAndDate(int userId, LocalDate date){
+        return voteRepository.findByUserIdAndDate(userId, date);
     }
 
     public List<Vote> getAllForUser(int userId) {
         return voteRepository.getAllByUser(userId);
+    }
+
+    public List<Vote> getAllForDate(LocalDate date){
+        if (date == null){
+            date = LocalDate.now();
+        }
+        return voteRepository.findByDate(date);
     }
 
     public List<Vote> getAllForRestaurant(int restaurantId) {

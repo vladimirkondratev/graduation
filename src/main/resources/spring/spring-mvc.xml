@@ -8,7 +8,7 @@
     <bean class="ru.graduation.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
     <context:component-scan base-package="ru.graduation.web"/>
-    <mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService">
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper" ref="objectMapper"/>
@@ -23,5 +23,14 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
+        <property name="formatters">
+            <set>
+                <bean class="ru.graduation.web.converter.DateTimeFormatters.LocalTimeFormatter"/>
+                <bean class="ru.graduation.web.converter.DateTimeFormatters.LocalDateFormatter"/>
+            </set>
+        </property>
+    </bean>
 
 </beans>

@@ -1,5 +1,7 @@
 package ru.graduation.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -21,6 +23,7 @@ public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
     @OrderBy("date DESC")
+    @JsonManagedReference
     private Set<Menu> menus;
 
     public Restaurant() {

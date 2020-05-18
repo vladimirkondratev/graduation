@@ -29,7 +29,7 @@ class DishServiceTest {
     @Test
     void create() {
         Dish newDish = DishTestData.getNew();
-        Dish created = service.create(new Dish(newDish), MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID);
+        Dish created = service.create(new Dish(newDish), MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID);
         int newId = created.getId();
         newDish.setId(newId);
         DISH_MATCHER.assertMatch(created, newDish);
@@ -38,30 +38,30 @@ class DishServiceTest {
     @Test
     void update() {
         Dish updated = DishTestData.getUpdated();
-        service.update(updated, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID);
-        DISH_MATCHER.assertMatch(service.get(updated.getId(), MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID), updated);
+        service.update(updated, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID);
+        DISH_MATCHER.assertMatch(service.get(updated.getId(), MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID), updated);
     }
 
     @Test
     void delete() {
-        service.delete(DISH_1_ID, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID);
-        assertThrows(NotFoundException.class, () -> service.get(DISH_1_ID, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID));
+        service.delete(DISH_1_ID, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID);
+        assertThrows(NotFoundException.class, () -> service.get(DISH_1_ID, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID));
     }
 
     @Test
     void deletedNotFound() throws Exception {
-        assertThrows(NotFoundException.class, () -> service.delete(1, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID));
+        assertThrows(NotFoundException.class, () -> service.delete(1, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID));
     }
 
     @Test
     void get() {
-        Dish dish = service.get(DISH_1_ID, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID);
+        Dish dish = service.get(DISH_1_ID, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID);
         DISH_MATCHER.assertMatch(dish, DISH_1);
     }
 
     @Test
     void getNotFound() throws Exception {
-        assertThrows(NotFoundException.class, () -> service.get(1, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT1_ID));
+        assertThrows(NotFoundException.class, () -> service.get(1, MenuTestData.MENU_1_ID, RestaurantTestData.RESTAURANT_1_ID));
     }
 
     @Test

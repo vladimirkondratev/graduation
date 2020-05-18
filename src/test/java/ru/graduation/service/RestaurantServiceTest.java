@@ -38,13 +38,13 @@ class RestaurantServiceTest {
     void update() {
         Restaurant updated = getUpdated();
         service.update(new Restaurant(updated));
-        RESTAURANT_MATCHER.assertMatch(service.get(RESTAURANT1_ID), updated);
+        RESTAURANT_MATCHER.assertMatch(service.get(RESTAURANT_1_ID), updated);
     }
 
     @Test
     void delete() {
-        service.delete(RESTAURANT1_ID);
-        assertThrows(NotFoundException.class, () -> service.get(RESTAURANT1_ID));
+        service.delete(RESTAURANT_1_ID);
+        assertThrows(NotFoundException.class, () -> service.get(RESTAURANT_1_ID));
     }
 
     @Test
@@ -54,7 +54,7 @@ class RestaurantServiceTest {
 
     @Test
     void get() {
-        Restaurant restaurant = service.get(RESTAURANT1_ID);
+        Restaurant restaurant = service.get(RESTAURANT_1_ID);
         RESTAURANT_MATCHER.assertMatch(restaurant, RESTAURANT_1);
     }
 

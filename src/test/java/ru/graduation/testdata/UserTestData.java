@@ -20,12 +20,12 @@ public class UserTestData {
     public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator(User.class, "registered", "votes");
 
 
-    public static User getNewUser() {
+    public static User getNew() {
         return new User(null, "New", "new@gmail.com", "newPass", false, new Date(), Collections.singleton(Role.ROLE_USER));
     }
 
-    public static User getUpdatedUser() {
-        User updated = new User(USER);
+    public static User getUpdated() {
+        User updated = new User(ADMIN);
         updated.setName("UpdatedName");
         return updated;
     }

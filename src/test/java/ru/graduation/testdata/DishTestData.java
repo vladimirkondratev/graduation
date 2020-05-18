@@ -17,11 +17,11 @@ public class DishTestData {
     public static final Dish DISH_7 = new Dish(100016, "pizza_DoDo_1", 36000);
     public static final Dish DISH_8 = new Dish(100017, "pizza_DoDo_2", 50000);
 
-    public static Dish getNewDish() {
+    public static Dish getNew() {
         return new Dish(null, "new", 1000);
     }
 
-    public static Dish getUpdatedDish() {
+    public static Dish getUpdated() {
         Dish updated = new Dish(DISH_1);
         updated.setPrice(10);
         return updated;

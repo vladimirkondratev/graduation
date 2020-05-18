@@ -10,11 +10,11 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_3 = new Restaurant(100004, "PizzaHut");
     public static TestMatcher<Restaurant> RESTAURANT_MATCHER = TestMatcher.usingFieldsComparator(Restaurant.class, "menus");
 
-    public static Restaurant getNewRestaurant() {
+    public static Restaurant getNew() {
         return new Restaurant(null, "new");
     }
 
-    public static Restaurant getUpdatedRestaurant() {
+    public static Restaurant getUpdated() {
         Restaurant updated = new Restaurant(RESTAURANT_1);
         updated.setName("updated");
         return updated;

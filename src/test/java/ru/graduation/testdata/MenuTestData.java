@@ -16,11 +16,11 @@ public class MenuTestData {
     public static final Menu MENU_4 = new Menu(100008, LocalDate.of(2020, 03, 25));
     public static final Menu MENU_5 = new Menu(100009, LocalDate.of(2020, 03, 24));
 
-    public static Menu getNewMenu() {
+    public static Menu getNew() {
         return new Menu(null, LocalDate.of(2020, 03, 26));
     }
 
-    public static Menu getUpdatedMenu() {
+    public static Menu getUpdated() {
         Menu updated = new Menu(MENU_1.getId(), LocalDate.of(2020, 5, 7));
         return updated;
     }

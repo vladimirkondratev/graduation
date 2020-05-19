@@ -50,31 +50,9 @@ public class VoteService {
         }
     }
 
-//    @Transactional
-//    public Vote create(Vote vote, int userId, int restaurantId) {
-//        Assert.notNull(vote, "vote must not be null");
-//        User user = userRepository.getOne(userId);
-//        vote.setUser(user);
-//        Restaurant restaurant = restaurantRepository.getOne(restaurantId);
-//        vote.setRestaurant(restaurant);
-//        return voteRepository.save(vote);
-//    }
-//
-//    @Transactional
-//    public void update(Vote vote, int userId) {
-//        Assert.notNull(vote, "vote must not be null");
-//        int voteId = vote.getId();
-////        checkNotFoundWithId(voteRepository.get(voteId, userId), voteId);
-//        checkNotFoundWithId(voteRepository.save(vote), voteId);
-//    }
-
     public int delete(int voteId, int userId) {
         return checkNotFound(voteRepository.delete(voteId, userId), "");
     }
-
-//    public Vote get(int voteId, int userId) {
-//        return checkNotFoundWithId(voteRepository.get(voteId, userId), voteId);
-//    }
 
     public Vote getForUserAndDate(int userId, LocalDate date){
         return voteRepository.findByUserIdAndDate(userId, date);

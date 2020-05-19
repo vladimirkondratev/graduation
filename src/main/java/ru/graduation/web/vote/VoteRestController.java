@@ -23,7 +23,7 @@ public class VoteRestController {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    static final String REST_URL = "/user/votes";
+    static final String REST_URL = "/rest/user/votes";
 
     private final VoteService voteService;
 

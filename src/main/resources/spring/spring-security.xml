@@ -5,8 +5,8 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 http://www.springframework.org/schema/security ">
 
-<!--    <http pattern="/resources/**" security="none"/>-->
-<!--    <http pattern="/webjars/**" security="none"/>-->
+    <!--    <http pattern="/resources/**" security="none"/>-->
+    <!--    <http pattern="/webjars/**" security="none"/>-->
 
     <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
         <http-basic/>
@@ -22,7 +22,7 @@ http://www.springframework.org/schema/security ">
             <password-encoder ref="noopEncoder"/>
             <user-service>
                 <user name="user@email.ru" password="password" authorities="ROLE_USER"/>
-                <user name="admin@email.com" password="admin" authorities="ROLE_ADMIN"/>
+                <user name="admin@email.ru" password="password" authorities="ROLE_ADMIN"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>

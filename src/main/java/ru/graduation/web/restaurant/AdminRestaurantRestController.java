@@ -26,7 +26,7 @@ public class AdminRestaurantRestController {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    static final String REST_URL = "/admin/restaurants";
+    static final String REST_URL = "/rest/admin/restaurants";
 
     static final String MENUS_REST_URL = "/{restaurantId}/menus";
 

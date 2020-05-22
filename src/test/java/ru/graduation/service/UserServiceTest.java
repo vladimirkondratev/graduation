@@ -12,7 +12,7 @@ import ru.graduation.util.exeption.NotFoundException;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.graduation.testdata.UserTestData.*;
 
 @SpringJUnitConfig(locations = {
@@ -80,5 +80,13 @@ class UserServiceTest {
     void getAll() throws Exception {
         List<User> all = service.getAll();
         USER_MATCHER.assertMatch(all, ADMIN, USER);
+    }
+
+    @Test
+    void enable() {
+        service.enable(USER_ID, false);
+        assertFalse(service.get(USER_ID).isEnabled());
+        service.enable(USER_ID, true);
+        assertTrue(service.get(USER_ID).isEnabled());
     }
 }

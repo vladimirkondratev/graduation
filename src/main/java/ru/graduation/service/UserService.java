@@ -1,6 +1,7 @@
 package ru.graduation.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.graduation.model.User;
 import ru.graduation.repository.UserRepository;
@@ -35,6 +36,12 @@ public class UserService {
 
     public User get(int id) {
         return checkNotFoundWithId(userRepository.findById(id).orElse(null), id);
+    }
+
+    @Transactional
+    public void enable(int userId, boolean enable){
+        User user = get(userId);
+        user.setEnabled(enable);
     }
 
     public User getByEmail(String email) {

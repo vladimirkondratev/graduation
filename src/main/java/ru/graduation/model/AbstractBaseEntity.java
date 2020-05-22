@@ -1,17 +1,13 @@
 package ru.graduation.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.hibernate.Hibernate;
-import org.springframework.data.domain.Persistable;
+import ru.graduation.HasId;
 
 import javax.persistence.*;
 
-import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
-import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE;
-
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity implements Persistable<Integer> {
+public abstract class AbstractBaseEntity implements HasId {
 
     public static final int START_SEQ = 100000;
 
@@ -28,15 +24,11 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
     }
 
     @Override
-    public boolean isNew() {
-        return this.id == null;
-    }
-
-    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

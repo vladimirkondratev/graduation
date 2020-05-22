@@ -7,6 +7,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.graduation.model.User;
 import ru.graduation.service.UserService;
 import ru.graduation.testdata.UserTestData;
+import ru.graduation.to.UserTo;
+import ru.graduation.util.UserUtil;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
 
@@ -45,6 +47,17 @@ class ProfileRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isNoContent());
 
         USER_MATCHER.assertMatch(userService.get(ADMIN_ID), updated);
+    }
+
+    @Test
+    void updateTo() throws Exception {
+        UserTo updatedTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword");
+        perform(MockMvcRequestBuilders.put(REST_URL).contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(updatedTo)))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+        USER_MATCHER.assertMatch(userService.get(ADMIN_ID), UserUtil.updateFromTo(new User(ADMIN), updatedTo));
     }
 
 }

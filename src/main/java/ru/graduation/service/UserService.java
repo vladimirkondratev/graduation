@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.graduation.model.User;
 import ru.graduation.repository.UserRepository;
+import ru.graduation.to.UserTo;
+import ru.graduation.util.UserUtil;
 
 import java.util.List;
 
@@ -28,6 +30,12 @@ public class UserService {
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
         checkNotFoundWithId(userRepository.save(user), user.getId());
+    }
+
+    @Transactional
+    public void update(UserTo userTo) {
+        User user = get(userTo.getId());
+        userRepository.save(UserUtil.updateFromTo(user, userTo));
     }
 
     public void delete(int id) {

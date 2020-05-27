@@ -38,7 +38,7 @@ class UserServiceTest {
     @Test
     void duplicateMailCreate() throws Exception {
         assertThrows(DataAccessException.class, () ->
-                service.create(new User(null, "Duplicate", "user@email.ru", "newPass", Role.ROLE_USER)));
+                service.create(new User(null, "Duplicate", "user@email.ru", "newPass", Role.USER)));
     }
 
     @Test

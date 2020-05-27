@@ -17,9 +17,9 @@ VALUES ('admin', 'admin@email.ru', 'password'),
        ('user', 'user@email.ru', 'password');
 
 INSERT INTO USER_ROLES (USER_ID, ROLE)
-VALUES (100000, 'ROLE_ADMIN'),
-       (100000, 'ROLE_USER'),
-       (100001, 'ROLE_USER');
+VALUES (100000, 'ADMIN'),
+       (100000, 'USER'),
+       (100001, 'USER');
 
 --IDs 100002, 100003, 100004
 INSERT INTO RESTAURANTS (NAME)

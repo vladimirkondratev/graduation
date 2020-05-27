@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.graduation.model.User;
 import ru.graduation.service.UserService;
 import ru.graduation.to.UserTo;
+import ru.graduation.util.UserUtil;
 
 import java.util.List;
 
@@ -32,6 +33,11 @@ public abstract class AbstractUserController {
         log.info("create {}", user);
         checkNew(user);
         return service.create(user);
+    }
+
+    public User create(UserTo userTo) {
+        log.info("create from to {}", userTo);
+        return create(UserUtil.createNewFromTo(userTo));
     }
 
     public void delete(int id) {

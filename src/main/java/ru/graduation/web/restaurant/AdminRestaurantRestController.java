@@ -14,6 +14,7 @@ import ru.graduation.service.DishService;
 import ru.graduation.service.MenuService;
 import ru.graduation.service.RestaurantService;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class AdminRestaurantRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
+    public ResponseEntity<Restaurant> createRestaurant(@Valid @RequestBody Restaurant restaurant) {
         log.info("create {}", restaurant);
         Restaurant created = restaurantService.create(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -56,7 +57,7 @@ public class AdminRestaurantRestController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody Restaurant restaurant, @PathVariable int id) {
+    public void update(@Valid @RequestBody Restaurant restaurant, @PathVariable int id) {
         log.info("update {}", restaurant);
         assureIdConsistent(restaurant, id);
         restaurantService.update(restaurant);
@@ -82,7 +83,7 @@ public class AdminRestaurantRestController {
     }
 
     @PostMapping(value = MENUS_REST_URL, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createMenu(@RequestBody Menu menu, @PathVariable int restaurantId) {
+    public ResponseEntity<Menu> createMenu(@Valid @RequestBody Menu menu, @PathVariable int restaurantId) {
         log.info("create menu {} for restaurant {}", menu, restaurantId);
         checkNew(menu);
         Menu created = menuService.create(menu, restaurantId);
@@ -94,7 +95,7 @@ public class AdminRestaurantRestController {
 
     @PutMapping(value = MENUS_REST_URL + "/{menuId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateMenu(@RequestBody Menu menu, @PathVariable int menuId, @PathVariable int restaurantId) {
+    public void updateMenu(@Valid @RequestBody Menu menu, @PathVariable int menuId, @PathVariable int restaurantId) {
         log.info("update menu {} for restaurant {}", menu, restaurantId);
         assureIdConsistent(menu, menuId);
         menuService.update(menu, restaurantId);
@@ -108,7 +109,7 @@ public class AdminRestaurantRestController {
     }
 
     @PostMapping(value = DISH_REST_URL, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> createDish(@RequestBody Dish dish,
+    public ResponseEntity<Dish> createDish(@Valid @RequestBody Dish dish,
                                            @PathVariable int restaurantId,
                                            @PathVariable int menuId) {
         log.info("create dish {} for menu {} for restaurant {}", dish, menuId, restaurantId);
@@ -122,7 +123,7 @@ public class AdminRestaurantRestController {
 
     @PutMapping(value = DISH_REST_URL + "/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateDish(@RequestBody Dish dish,
+    public void updateDish(@Valid @RequestBody Dish dish,
                            @PathVariable int restaurantId,
                            @PathVariable int menuId,
                            @PathVariable int dishId) {

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.graduation.model.User;
 import ru.graduation.to.UserTo;
 
+import javax.validation.Valid;
+
 import static ru.graduation.web.SecurityUtil.authUserId;
 
 @RestController
@@ -27,7 +29,7 @@ public class ProfileRestController extends AbstractUserController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody UserTo userTo) {
+    public void update(@Valid @RequestBody UserTo userTo) {
         super.update(userTo, authUserId());
     }
 }

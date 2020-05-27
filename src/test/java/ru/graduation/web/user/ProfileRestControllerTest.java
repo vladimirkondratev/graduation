@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import ru.graduation.model.User;
 import ru.graduation.service.UserService;
 import ru.graduation.to.UserTo;
@@ -39,6 +41,17 @@ class ProfileRestControllerTest extends AbstractControllerTest {
         newUser.setId(newId);
         USER_MATCHER.assertMatch(created, newUser);
         USER_MATCHER.assertMatch(userService.get(newId), newUser);
+    }
+
+    @Test
+    @Transactional(propagation = Propagation.NEVER)
+    void registerDuplicateEmail() throws Exception {
+        UserTo newTo = new UserTo(null, "newName", "user@email.ru", "newPassword");
+        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "/register")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(newTo)))
+                .andExpect(status().isConflict())
+                .andDo(print());
     }
 
     @Test

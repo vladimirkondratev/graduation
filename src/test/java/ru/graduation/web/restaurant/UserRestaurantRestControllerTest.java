@@ -8,6 +8,8 @@ import ru.graduation.web.AbstractControllerTest;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.graduation.TestUtil.userHttpBasic;
+import static ru.graduation.testdata.UserTestData.USER;
 
 class UserRestaurantRestControllerTest extends AbstractControllerTest {
 
@@ -15,7 +17,8 @@ class UserRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL))
+        perform(MockMvcRequestBuilders.get(REST_URL)
+                .with(userHttpBasic(USER)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 // https://jira.spring.io/browse/SPR-14472

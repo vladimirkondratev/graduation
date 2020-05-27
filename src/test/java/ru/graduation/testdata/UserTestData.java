@@ -25,7 +25,7 @@ public class UserTestData {
     }
 
     public static User getUpdated() {
-        User updated = new User(ADMIN);
+        User updated = new User(USER);
         updated.setName("UpdatedName");
         return updated;
     }

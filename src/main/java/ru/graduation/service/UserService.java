@@ -1,5 +1,7 @@
 package ru.graduation.service;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,7 @@ import static ru.graduation.util.ValidationUtil.checkNotFound;
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
-//for cache
-//@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;

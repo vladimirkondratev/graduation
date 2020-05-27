@@ -228,6 +228,12 @@
             <version>3.15.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>${spring.security.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Logging with SLF4J & LogBack -->
         <dependency>

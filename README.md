@@ -1,5 +1,5 @@
 # graduation
-graduation project of topjava cource
+graduation project of topjava internship
 
 ПРОЕКТ В РАЗРАБОТКЕ
 

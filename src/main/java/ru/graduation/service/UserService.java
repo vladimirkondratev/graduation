@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -15,6 +16,7 @@ import ru.graduation.util.UserUtil;
 
 import java.util.List;
 
+import static ru.graduation.util.UserUtil.prepareToSave;
 import static ru.graduation.util.ValidationUtil.checkNotFound;
 import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 
@@ -23,25 +25,27 @@ import static ru.graduation.util.ValidationUtil.checkNotFoundWithId;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
-        return userRepository.save(user);
+        return prepareAndSave(user);
     }
 
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(userRepository.save(user), user.getId());
+        prepareAndSave(user);
     }
 
     @Transactional
     public void update(UserTo userTo) {
         User user = get(userTo.getId());
-        userRepository.save(UserUtil.updateFromTo(user, userTo));
+        prepareAndSave(UserUtil.updateFromTo(user, userTo));
     }
 
     public void delete(int id) {
@@ -54,7 +58,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void enable(int userId, boolean enable){
-        User user = get(userId);
+        User user = checkNotFoundWithId(get(userId), userId);
         user.setEnabled(enable);
     }
 
@@ -74,5 +78,9 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }
         return new AuthorizedUser(user);
+    }
+
+    private User prepareAndSave(User user) {
+        return userRepository.save(prepareToSave(user, passwordEncoder));
     }
 }

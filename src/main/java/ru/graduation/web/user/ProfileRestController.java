@@ -30,6 +30,12 @@ public class ProfileRestController extends AbstractUserController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@Valid @RequestBody UserTo userTo) {
+        super.update(userTo, authUserId());
+    }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public User get() {
         return super.get(authUserId());
@@ -39,11 +45,5 @@ public class ProfileRestController extends AbstractUserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete() {
         super.delete(authUserId());
-    }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid @RequestBody UserTo userTo) {
-        super.update(userTo, authUserId());
     }
 }

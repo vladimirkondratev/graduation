@@ -3,6 +3,7 @@ package ru.graduation.testdata;
 import ru.graduation.TestMatcher;
 import ru.graduation.model.Role;
 import ru.graduation.model.User;
+import ru.graduation.web.json.JsonUtil;
 
 import java.util.Collections;
 import java.util.Date;
@@ -17,7 +18,7 @@ public class UserTestData {
     public static final User USER = new User(USER_ID, "user", "user@email.ru", "password", Role.USER);
 
 
-    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator(User.class, "registered", "votes");
+    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator(User.class, "registered", "votes", "password");
 
 
     public static User getNew() {
@@ -30,5 +31,8 @@ public class UserTestData {
         return updated;
     }
 
+    public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
+    }
 
 }

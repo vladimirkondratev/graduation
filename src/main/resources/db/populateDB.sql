@@ -13,8 +13,8 @@ FROM restaurants;
 ALTER SEQUENCE GLOBAL_SEQ RESTART WITH 100000;
 
 INSERT INTO USERS (name, email, password)
-VALUES ('admin', 'admin@email.ru', 'password'),
-       ('user', 'user@email.ru', 'password');
+VALUES ('admin', 'admin@email.ru', '{noop}password'),
+       ('user', 'user@email.ru', '{noop}password');
 
 INSERT INTO USER_ROLES (USER_ID, ROLE)
 VALUES (100000, 'ADMIN'),

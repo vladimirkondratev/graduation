@@ -17,18 +17,6 @@ public class AdminRestController extends AbstractUserController {
 
     static final String REST_URL = "/rest/admin/users";
 
-    @Override
-    @GetMapping
-    public List<User> getAll() {
-        return super.getAll();
-    }
-
-    @Override
-    @GetMapping("/{id}")
-    public User get(@PathVariable int id) {
-        return super.get(id);
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@Valid @RequestBody User user) {
         User created = super.create(user);
@@ -39,13 +27,6 @@ public class AdminRestController extends AbstractUserController {
     }
 
     @Override
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int id) {
-        super.delete(id);
-    }
-
-    @Override
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@Valid @RequestBody User user, @PathVariable int id) {
@@ -53,15 +34,34 @@ public class AdminRestController extends AbstractUserController {
     }
 
     @Override
-    @PatchMapping("/{id}")
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void enable(@PathVariable int id, @RequestParam boolean enabled) {
-        super.enable(id, enabled);
+    @GetMapping("/{id}")
+    public User get(@PathVariable int id) {
+        return super.get(id);
     }
 
     @Override
     @GetMapping("/by")
     public User getByMail(@RequestParam String email) {
         return super.getByMail(email);
+    }
+
+    @Override
+    @GetMapping
+    public List<User> getAll() {
+        return super.getAll();
+    }
+
+    @Override
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        super.delete(id);
+    }
+
+    @Override
+    @PatchMapping("/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void enable(@PathVariable int id, @RequestParam boolean enabled) {
+        super.enable(id, enabled);
     }
 }

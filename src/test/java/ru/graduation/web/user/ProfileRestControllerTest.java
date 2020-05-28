@@ -11,12 +11,12 @@ import ru.graduation.model.User;
 import ru.graduation.service.UserService;
 import ru.graduation.to.UserTo;
 import ru.graduation.util.UserUtil;
+import ru.graduation.util.exeption.ErrorType;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.graduation.TestUtil.readFromJson;
 import static ru.graduation.TestUtil.userHttpBasic;
 import static ru.graduation.testdata.UserTestData.*;
@@ -46,11 +46,11 @@ class ProfileRestControllerTest extends AbstractControllerTest {
     @Test
     @Transactional(propagation = Propagation.NEVER)
     void registerDuplicateEmail() throws Exception {
-        UserTo newTo = new UserTo(null, "newName", "user@email.ru", "newPassword");
+        UserTo newTo = new UserTo(null, "newName", USER.getEmail(), "newPassword");
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newTo)))
-                .andExpect(status().isConflict())
+                .andExpect(status().isUnprocessableEntity())
                 .andDo(print());
     }
 
@@ -89,4 +89,16 @@ class ProfileRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isUnauthorized());
     }
 
+    @Test
+    void updateInvalid() throws Exception {
+        UserTo updatedTo = new UserTo(null, null, "password", null);
+        perform(MockMvcRequestBuilders.put(REST_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(userHttpBasic(USER))
+                .content(JsonUtil.writeValue(updatedTo)))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(jsonPath("$.type").value(ErrorType.VALIDATION_ERROR.name()))
+                .andDo(print());
+    }
 }

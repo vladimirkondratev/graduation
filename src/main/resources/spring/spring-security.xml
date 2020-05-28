@@ -12,7 +12,8 @@
         <csrf disabled="true"/>
     </http>
 
-    <beans:bean class="org.springframework.security.crypto.factory.PasswordEncoderFactories" id="passwordEncoder"
+    <beans:bean class="org.springframework.security.crypto.factory.PasswordEncoderFactories"
+                id="passwordEncoder"
                 factory-method="createDelegatingPasswordEncoder"/>
 
     <authentication-manager>

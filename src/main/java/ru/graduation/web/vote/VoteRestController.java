@@ -31,12 +31,6 @@ public class VoteRestController {
         this.voteService = voteService;
     }
 
-    /**
-     * 
-     * @param restaurantId
-     * @param authUser
-     * @return
-     */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vote> vote(@RequestParam int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
         log.info("vote for restaurant: {}", restaurantId);

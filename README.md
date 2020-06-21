@@ -1,12 +1,9 @@
-# graduation
-graduation project of topjava internship
+## TopJava graduation project
 
 ПРОЕКТ В РАЗРАБОТКЕ
 
 Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) without frontend.
-
 The task is:
-
 Build a voting system for deciding where to have lunch.
 
     2 types of users: admin and regular users
@@ -19,7 +16,20 @@ Build a voting system for deciding where to have lunch.
         If it is after 11:00 then it is too late, vote can't be changed
 
 Each restaurant provides new menu each day.
-
 As a result, provide a link to github repository.
-
 It should contain the code and README.md with API documentation and curl commands to get data for voting and vote.
+
+## Running the application
+
+### Application description
+
+### Curl commands to REST API
+(application deployed in application context `graduation`)
+#### AdminRestController
+
+| Role | Path                 |  Method | Description   |
+|------|----------------------|---------|---------------|
+| Admin| [`/rest/admin/users`]|   `GET` | Get all users |
+* **Example:**
+
+`curl -s http://localhost:8080/graduation/rest/admin/users --user admin@gmail.com:password`

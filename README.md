@@ -32,4 +32,4 @@ It should contain the code and README.md with API documentation and curl command
 | Admin| [`/rest/admin/users`]|   `GET` | Get all users |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/rest/admin/users --user admin@gmail.com:password`
+`curl -s http://localhost:8080/graduation/rest/admin/users --user admin@email.com:password`

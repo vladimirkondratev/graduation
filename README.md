@@ -163,7 +163,7 @@ It should contain the code and README.md with API documentation and curl command
 `curl -s -X DELETE http://localhost:8080/graduation/rest/admin/restaurants/100002/menus/100005/dishes/100010 --user admin@email.com:password`
 
 
-### Admin API
+### User API
 #### User Profile API
 
 | Role | Path                 |  Method  | Description |

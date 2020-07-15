@@ -291,7 +291,7 @@
                 <db.type>mem</db.type>
                 <db.name>${dbName}</db.name>
                 <db.init>true</db.init>
-                <maven.test.skip>true</maven.test.skip>
+                <maven.test.skip>${skipTests}</maven.test.skip>
             </properties>
         </profile>
 
@@ -301,7 +301,7 @@
                 <db.type>file</db.type>
                 <db.name>${dbPath}${dbName}</db.name>
                 <db.init>true</db.init>
-                <maven.test.skip>true</maven.test.skip>
+                <maven.test.skip>${skipTests}</maven.test.skip>
             </properties>
         </profile>
 
@@ -314,7 +314,7 @@
                 <db.type>file</db.type>
                 <db.name>${dbPath}${dbName}</db.name>
                 <db.init>false</db.init>
-                <maven.test.skip>true</maven.test.skip>
+                <maven.test.skip>${skipTests}</maven.test.skip>
             </properties>
         </profile>
     </profiles>

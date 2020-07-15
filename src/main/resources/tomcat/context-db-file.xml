@@ -35,7 +35,7 @@
     <Resource name="jdbc/file-graduation"
               auth="Container"
               type="javax.sql.DataSource"
-              url="jdbc:hsqldb:file:~/graduation/graduation.db"
+              url="jdbc:hsqldb:file:/db/graduation.db"
               username="user"
               password="password"
               driverClassName="org.hsqldb.jdbcDriver"

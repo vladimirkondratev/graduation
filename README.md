@@ -19,9 +19,22 @@ As a result, provide a link to github repository.
 It should contain the code and README.md with API documentation and curl commands to get data for voting and vote.
 
 ## Running the application
- * Build package with Maven `mvn package`
- * Deploy `graduation.war` with Tomcat at `localhost:8080/graduation`
- * Run REST requests listed below
+
+## Install & Run
+
+* Clone this repository from git and go to app dir:\
+`git clone https://github.com/vladimirkondratev/graduation.git graduation`\
+`cd graduation`
+* For quick test: deploy it with maven (DB is stored in RAM)\
+`mvn clean package -P test cargo:run`\
+all data will be destroyed after app is stopping
+* For usage permanently (DB is stored in project dir):
+    - install and first run with next command:\
+    `mvn clean package -P install cargo:run`
+    - resuming app usage after stopping available with this command:\
+    `mvn package cargo:run`
+
+Project will be deployed at *graduation* application context
 ### Application description
 
 ### Curl commands REST API

@@ -16,6 +16,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <logName>graduation.log</logName>
+        <dbPath>${project.basedir}/db/</dbPath>
+        <dbName>graduation.db</dbName>
+        <skipTests>true</skipTests>
+
         <!-- Build -->
         <cargo-maven2-plugin.version>1.7.10</cargo-maven2-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -45,7 +50,7 @@
     </properties>
 
     <build>
-        <finalName>topjava</finalName>
+        <finalName>graduation</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
@@ -91,7 +96,7 @@
                     <configuration>
                         <configfiles>
                             <configfile>
-                                <file>src/main/resources/tomcat/context.xml</file>
+                                <file>src/main/resources/tomcat/context-db-${db.type}.xml</file>
                                 <todir>conf/Catalina/localhost/</todir>
                                 <tofile>${project.build.finalName}.xml</tofile>
                             </configfile>
@@ -110,6 +115,19 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.sql</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
@@ -259,6 +277,47 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <activation>
+                <property>
+                    <name>act</name>
+                    <value>test</value>
+                </property>
+            </activation>
+            <properties>
+                <db.type>mem</db.type>
+                <db.name>${dbName}</db.name>
+                <db.init>true</db.init>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>install</id>
+            <properties>
+                <db.type>file</db.type>
+                <db.name>${dbPath}${dbName}</db.name>
+                <db.init>true</db.init>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>run</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.type>file</db.type>
+                <db.name>${dbPath}${dbName}</db.name>
+                <db.init>false</db.init>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>

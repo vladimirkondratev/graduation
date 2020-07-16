@@ -31,6 +31,14 @@ public class VoteRestController {
         this.voteService = voteService;
     }
 
+    /**
+     * Vote for a restaurant or change own vote to another restaurant (before deadline time is end)
+     * @param restaurantId - ID of restaurant
+     * @param authUser  - auth user credentials
+     * @return {@code 201 "Created"} and {@link Vote} entity if vote was successful,
+     *      * {@code 200 OK} if vote change was successful or
+     *      * {@code 422 "Unprocessable Entity"} if vote change was not successful
+     */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vote> vote(@RequestParam int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
         log.info("vote for restaurant: {}", restaurantId);

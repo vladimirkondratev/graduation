@@ -36,7 +36,17 @@ all data will be destroyed after app is stopping
 
 Project will be deployed at *graduation* application context
 ### Application description
-
+* Admin can do:
+    - viewing, adding, updating, enabling/disabling and deleting users.
+    - viewing, adding, updating, deleting restaurants. If restaurant has votes it can't be deleted.
+    - viewing, adding, updating, deleting restaurant's menu. 
+    - viewing, adding, updating, deleting menu's dishes.
+ * User can do:
+    - viewing restaurants, it's lunch menu and dishes for today.
+    - voting and update vote for a restaurant before 11:00.
+    - viewing vote results for a day.
+    
+Time is defined by default server system timezone.
 ### Curl commands REST API
 ### Admin API
 #### Admin Profile API

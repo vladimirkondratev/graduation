@@ -1,3 +1,6 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d3ff38812c1a489d8949d3988c23927c)](https://www.codacy.com/manual/vladimirkondratev/graduation?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vladimirkondratev/graduation&amp;utm_campaign=Badge_Grade)
+[![Build Status](https://travis-ci.org/vladimirkondratev/graduation.svg?branch=master)](https://travis-ci.org/vladimirkondratev/graduation)
+
 ## TopJava graduation project
 
 

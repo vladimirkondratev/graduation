@@ -8,6 +8,9 @@ import ru.graduation.to.UserTo;
 
 public class UserUtil {
 
+    private UserUtil() {
+    }
+
     public static User createNewFromTo(UserTo userTo) {
         return new User(null, userTo.getName(), userTo.getEmail().toLowerCase(), userTo.getPassword(), Role.USER);
     }

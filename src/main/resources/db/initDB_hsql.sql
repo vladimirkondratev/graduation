@@ -41,8 +41,8 @@ CREATE TABLE votes
     user_id       INTEGER                 NOT NULL,
     restaurant_id INTEGER                 NOT NULL,
     CONSTRAINT user_vote_restaurant_idx UNIQUE (date, user_id, restaurant_id),
-    FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE RESTRICT ,
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE RESTRICT
 );
 CREATE UNIQUE INDEX votes_unique_user_date_restaurant_idx ON votes (user_id, date, restaurant_id);
 
@@ -52,7 +52,7 @@ CREATE TABLE menus
     date          TIMESTAMP DEFAULT now() NOT NULL,
     restaurant_id INTEGER                 NOT NULL,
     CONSTRAINT menu_restaurant_idx UNIQUE (date, restaurant_id),
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE RESTRICT
 );
 CREATE UNIQUE INDEX menus_restaurant_actual_idx ON menus (restaurant_id, date);
 
@@ -62,7 +62,7 @@ CREATE TABLE dishes
     menu_id INTEGER      NOT NULL,
     name    VARCHAR(255) NOT NULL,
     price   INT          NOT NULL,
-    FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE CASCADE
+    FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE RESTRICT
 )
 
 

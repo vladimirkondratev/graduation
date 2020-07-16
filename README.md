@@ -37,9 +37,9 @@ all data will be destroyed after app is stopping
 Project will be deployed at *graduation* application context
 ### Application description
 * Admin can do:
-    - viewing, adding, updating, enabling/disabling and deleting users.
-    - viewing, adding, updating, deleting restaurants. If restaurant has votes it can't be deleted.
-    - viewing, adding, updating, deleting restaurant's menu. 
+    - viewing, adding, updating, enabling/disabling and deleting users. If user has votes it can't be deleted.
+    - viewing, adding, updating, deleting restaurants. If restaurant has votes or menus it can't be deleted.
+    - viewing, adding, updating, deleting restaurant's menu. If menu has dishes it can't be deleted.
     - viewing, adding, updating, deleting menu's dishes.
  * User can do:
     - viewing restaurants, it's lunch menu and dishes for today.

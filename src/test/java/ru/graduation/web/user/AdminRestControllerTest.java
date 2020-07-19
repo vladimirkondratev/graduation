@@ -12,12 +12,10 @@ import ru.graduation.model.User;
 import ru.graduation.service.UserService;
 import ru.graduation.testdata.UserTestData;
 import ru.graduation.util.exeption.ErrorType;
-import ru.graduation.util.exeption.NotFoundException;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.graduation.TestUtil.readFromJson;
@@ -126,14 +124,14 @@ class AdminRestControllerTest extends AbstractControllerTest {
                 .andExpect(USER_MATCHER.contentJson(USER));
     }
 
-    @Test
-    void delete() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + USER_ID)
-                .with(userHttpBasic(ADMIN)))
-                .andDo(print())
-                .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> userService.get(USER_ID));
-    }
+//    @Test
+//    void delete() throws Exception {
+//        perform(MockMvcRequestBuilders.delete(REST_URL + USER_ID)
+//                .with(userHttpBasic(ADMIN)))
+//                .andDo(print())
+//                .andExpect(status().isNoContent());
+//        assertThrows(NotFoundException.class, () -> userService.get(USER_ID));
+//    }
 
     @Test
     void deleteNotFound() throws Exception {

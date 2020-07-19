@@ -26,8 +26,7 @@ import static ru.graduation.TestUtil.readFromJson;
 import static ru.graduation.TestUtil.userHttpBasic;
 import static ru.graduation.testdata.DishTestData.DISH_1_ID;
 import static ru.graduation.testdata.DishTestData.DISH_MATCHER;
-import static ru.graduation.testdata.MenuTestData.MENU_1_ID;
-import static ru.graduation.testdata.MenuTestData.MENU_MATCHER;
+import static ru.graduation.testdata.MenuTestData.*;
 import static ru.graduation.testdata.RestaurantTestData.*;
 import static ru.graduation.testdata.UserTestData.ADMIN;
 import static ru.graduation.testdata.UserTestData.USER;
@@ -75,11 +74,11 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + RESTAURANT_1_ID)
+        perform(MockMvcRequestBuilders.delete(REST_URL + RESTAURANT_3_ID_WITH_NO_MENU_AND_VOTES)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> restaurantService.get(RESTAURANT_1_ID));
+        assertThrows(NotFoundException.class, () -> restaurantService.get(RESTAURANT_3_ID_WITH_NO_MENU_AND_VOTES));
     }
 
     @Test
@@ -130,11 +129,11 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteMenu() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + MENUS_REST_URL + MENU_1_ID, RESTAURANT_1_ID)
+        perform(MockMvcRequestBuilders.delete(REST_URL + MENUS_REST_URL + MENU_2_ID_WITH_NO_DISHES, RESTAURANT_3_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> menuService.get(MENU_1_ID, RESTAURANT_1_ID));
+        assertThrows(NotFoundException.class, () -> menuService.get(MENU_2_ID_WITH_NO_DISHES, RESTAURANT_3_ID));
     }
 
     @Test

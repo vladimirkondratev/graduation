@@ -10,6 +10,7 @@ public class MenuTestData {
     public static TestMatcher<Menu> MENU_MATCHER = TestMatcher.usingFieldsComparator(Menu.class, "restaurant", "dishes");
 
     public static final int MENU_1_ID = 100005;
+    public static final int MENU_2_ID_WITH_NO_DISHES = 100009;
     public static final Menu MENU_1 = new Menu(MENU_1_ID, LocalDate.of(2020, 03, 25));
     public static final Menu MENU_2 = new Menu(100006, LocalDate.of(2020, 03, 24));
     public static final Menu MENU_3 = new Menu(100007, LocalDate.of(2020, 03, 23));

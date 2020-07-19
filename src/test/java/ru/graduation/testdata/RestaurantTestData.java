@@ -5,6 +5,8 @@ import ru.graduation.model.Restaurant;
 
 public class RestaurantTestData {
     public static final int RESTAURANT_1_ID = 100002;
+    public static final int RESTAURANT_3_ID = 100003;
+    public static final int RESTAURANT_3_ID_WITH_NO_MENU_AND_VOTES = 100004;
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_1_ID, "Ollis");
     public static final Restaurant RESTAURANT_2 = new Restaurant(100003, "DoDo");
     public static final Restaurant RESTAURANT_3 = new Restaurant(100004, "PizzaHut");

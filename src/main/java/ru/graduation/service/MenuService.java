@@ -33,6 +33,7 @@ public class MenuService {
         return menuRepository.save(menu);
     }
 
+    @Transactional
     public void update(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
         menu.setRestaurant(restaurantRepository.getOne(restaurantId));

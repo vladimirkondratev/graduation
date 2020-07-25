@@ -8,7 +8,6 @@ import ru.graduation.model.Vote;
 import ru.graduation.repository.RestaurantRepository;
 import ru.graduation.repository.UserRepository;
 import ru.graduation.repository.VoteRepository;
-import ru.graduation.util.DateTimeUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -41,7 +40,7 @@ public class VoteService {
         if (vote == null){
             return voteRepository.save(new Vote(null, LocalDate.now(), user, restaurant));
         } else {
-            if (LocalTime.now().isBefore(DateTimeUtil.deadLine)){
+            if (LocalTime.now().isBefore(Vote.deadLine)){
                 vote.setRestaurant(restaurant);
                 return voteRepository.save(vote);
             } else {

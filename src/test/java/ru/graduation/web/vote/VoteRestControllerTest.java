@@ -41,8 +41,4 @@ class VoteRestControllerTest extends AbstractControllerTest {
         VOTE_MATCHER.assertMatch(voteService.getForUserAndDate(USER_ID, LocalDate.now()), newVote);
     }
 
-//    @Test
-//    void getAllForDate() throws Exception{
-//
-//    }
 }

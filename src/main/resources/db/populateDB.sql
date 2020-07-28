@@ -18,7 +18,6 @@ VALUES ('admin', 'admin@email.ru', '{noop}password'),
 
 INSERT INTO USER_ROLES (USER_ID, ROLE)
 VALUES (100000, 'ADMIN'),
-       (100000, 'USER'),
        (100001, 'USER');
 
 --IDs 100002, 100003, 100004

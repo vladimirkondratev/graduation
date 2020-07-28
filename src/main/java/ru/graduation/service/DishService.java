@@ -1,5 +1,6 @@
 package ru.graduation.service;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -27,6 +28,7 @@ public class DishService {
     }
 
     @Transactional
+    @CacheEvict(value = "restaurants", allEntries = true)
     public Dish create(Dish dish, int menuId, int restaurantId) {
         Assert.notNull(dish, "dish must not be null");
         Menu menu = checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
@@ -36,6 +38,7 @@ public class DishService {
     }
 
     @Transactional
+    @CacheEvict(value = "restaurants", allEntries = true)
     public void update(Dish dish, int menuId, int restaurantId) {
         Assert.notNull(dish, "meal must not be null");
         Menu menu = checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
@@ -44,6 +47,7 @@ public class DishService {
     }
 
     @Transactional
+    @CacheEvict(value = "restaurants", allEntries = true)
     public void delete(int dishId, int menuId, int restaurantId) {
         checkNotFound(menuRepository.getForRestaurant(menuId, restaurantId), "menu not found");
         checkNotFoundWithId(dishRepository.delete(dishId, menuId) != 0, dishId);

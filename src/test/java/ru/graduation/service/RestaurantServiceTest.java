@@ -1,7 +1,9 @@
 package ru.graduation.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -24,6 +26,14 @@ class RestaurantServiceTest {
     @Autowired
     private RestaurantService service;
 
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        cacheManager.getCache("restaurants").clear();
+    }
+
     @Test
     void create() {
         Restaurant newRestaurant = getNew();
@@ -43,8 +53,8 @@ class RestaurantServiceTest {
 
     @Test
     void delete() {
-        service.delete(RESTAURANT_1_ID);
-        assertThrows(NotFoundException.class, () -> service.get(RESTAURANT_1_ID));
+        service.delete(RESTAURANT_3_ID_WITH_NO_MENU_AND_VOTES);
+        assertThrows(NotFoundException.class, () -> service.get(RESTAURANT_3_ID_WITH_NO_MENU_AND_VOTES));
     }
 
     @Test

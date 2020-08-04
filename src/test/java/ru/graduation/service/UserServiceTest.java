@@ -3,9 +3,6 @@ package ru.graduation.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.graduation.model.Role;
 import ru.graduation.model.User;
 import ru.graduation.util.exeption.NotFoundException;
@@ -15,12 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static ru.graduation.testdata.UserTestData.*;
 
-@SpringJUnitConfig(locations = {
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-class UserServiceTest {
+class UserServiceTest extends AbstractServiceTest{
 
     @Autowired
     private UserService service;
@@ -50,8 +42,8 @@ class UserServiceTest {
 
     @Test
     void delete() {
-        service.delete(ADMIN_ID);
-        assertThrows(NotFoundException.class, () -> service.get(ADMIN_ID));
+        service.delete(USER2_ID_WITH_NO_VOTES);
+        assertThrows(NotFoundException.class, () -> service.get(USER2_ID_WITH_NO_VOTES));
     }
 
     @Test
@@ -79,7 +71,7 @@ class UserServiceTest {
     @Test
     void getAll() throws Exception {
         List<User> all = service.getAll();
-        USER_MATCHER.assertMatch(all, ADMIN, USER);
+        USER_MATCHER.assertMatch(all, ADMIN, USER, USER2);
     }
 
     @Test

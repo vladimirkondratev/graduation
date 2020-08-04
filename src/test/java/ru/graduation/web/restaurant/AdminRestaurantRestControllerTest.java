@@ -98,7 +98,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_MATCHER.contentJson(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3));
+                .andExpect(RESTAURANT_MATCHER.contentJson(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3_WITH_NO_MENU));
     }
 
     @Test
@@ -129,11 +129,11 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void deleteMenu() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + MENUS_REST_URL + MENU_2_ID_WITH_NO_DISHES, RESTAURANT_3_ID)
+        perform(MockMvcRequestBuilders.delete(REST_URL + MENUS_REST_URL + MENU_ID_WITH_NO_DISHES, RESTAURANT_2_ID)
                 .with(userHttpBasic(ADMIN)))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertThrows(NotFoundException.class, () -> menuService.get(MENU_2_ID_WITH_NO_DISHES, RESTAURANT_3_ID));
+        assertThrows(NotFoundException.class, () -> menuService.get(MENU_ID_WITH_NO_DISHES, RESTAURANT_2_ID));
     }
 
     @Test

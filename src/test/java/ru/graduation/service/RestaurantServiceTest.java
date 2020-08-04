@@ -4,9 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.graduation.model.Restaurant;
 import ru.graduation.util.exeption.NotFoundException;
 
@@ -16,12 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.graduation.testdata.RestaurantTestData.*;
 
-@SpringJUnitConfig(locations = {
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-class RestaurantServiceTest {
+class RestaurantServiceTest extends AbstractServiceTest{
 
     @Autowired
     private RestaurantService service;
@@ -76,7 +68,7 @@ class RestaurantServiceTest {
     @Test
     void getAll() {
         List<Restaurant> all = service.getAll();
-        RESTAURANT_MATCHER.assertMatch(all, RESTAURANT_1, RESTAURANT_2, RESTAURANT_3);
+        RESTAURANT_MATCHER.assertMatch(all, RESTAURANT_1, RESTAURANT_2, RESTAURANT_3_WITH_NO_MENU);
     }
 
     @Test

@@ -2,9 +2,6 @@ package ru.graduation.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.graduation.model.Dish;
 import ru.graduation.testdata.DishTestData;
 import ru.graduation.testdata.MenuTestData;
@@ -16,12 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.graduation.testdata.DishTestData.*;
 
-@SpringJUnitConfig(locations = {
-        "classpath:spring/spring-app.xml",
-        "classpath:spring/spring-db.xml"
-})
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-class DishServiceTest {
+class DishServiceTest extends AbstractServiceTest{
 
     @Autowired
     private DishService service;

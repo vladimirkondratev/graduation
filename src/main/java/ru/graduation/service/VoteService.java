@@ -36,6 +36,11 @@ public class VoteService {
         this.zoneId = ZoneId.systemDefault();
     }
 
+    /**
+     * for test purpose only, to test voting before and after deadLine.
+     * Should be change to aspect.
+     * @param dateTime
+     */
     public void setClockAndTimeZone(LocalDateTime dateTime) {
         this.clock = Clock.fixed(dateTime.atZone(zoneId).toInstant(), zoneId);
     }

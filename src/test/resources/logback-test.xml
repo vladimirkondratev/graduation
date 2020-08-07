@@ -1,4 +1,4 @@
-<configuration>
+    <configuration>
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
@@ -20,9 +20,6 @@
     <logger name="result" level="INFO" additivity="false">
         <appender-ref ref="result"/>
     </logger>
-
-    <!--<logger name="org.postgresql" level="debug"/>-->
-    <!--<logger name="org.springframework.jdbc" level="debug"/>-->
 
     <logger name="ru.graduation" level="debug"/>
 

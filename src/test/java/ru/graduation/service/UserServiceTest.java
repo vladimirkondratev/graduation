@@ -1,5 +1,8 @@
 package ru.graduation.service;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -7,15 +10,27 @@ import ru.graduation.model.Role;
 import ru.graduation.model.User;
 import ru.graduation.util.exeption.NotFoundException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static ru.graduation.testdata.UserTestData.*;
 
-class UserServiceTest extends AbstractServiceTest{
+class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     private UserService service;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        Session s = (Session) em.getDelegate();
+        SessionFactory sf = s.getSessionFactory();
+        sf.getCache().evictAllRegions();
+    }
 
     @Test
     void create() {

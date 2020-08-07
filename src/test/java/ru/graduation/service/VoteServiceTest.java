@@ -11,33 +11,35 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1_ID;
 import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_2_ID;
+import static ru.graduation.testdata.UserTestData.ADMIN_ID;
 import static ru.graduation.testdata.UserTestData.USER_ID;
 import static ru.graduation.testdata.VoteTestData.*;
 
-class VoteServiceTest extends AbstractServiceTest{
+class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
     VoteService service;
 
     @Test
     void doNewVote() {
+        service.setClockAndTimeZone(LocalDateTime.now());
         Vote newVote = getNew();
-        Vote createdVote = service.doVote(USER_ID, RESTAURANT_1_ID);
+        Vote createdVote = service.doVote(ADMIN_ID, RESTAURANT_1_ID);
         int id = createdVote.getId();
         newVote.setId(id);
         VOTE_MATCHER.assertMatch(createdVote, newVote);
-        VOTE_MATCHER.assertMatch(service.getForUserAndDate(USER_ID, LocalDate.now()), newVote);
+        VOTE_MATCHER.assertMatch(service.getForUserAndDate(ADMIN_ID, LocalDate.now()), newVote);
     }
 
     @Test
-    void updateVoteBeforeDeadLine(){
+    void updateVoteBeforeDeadLine() {
         service.setClockAndTimeZone(LocalDateTime.of(voteDate, voteTimeBefore));
         Vote newVote = service.doVote(USER_ID, RESTAURANT_2_ID);
         VOTE_MATCHER.assertMatch(newVote, service.getForUserAndDate(USER_ID, voteDate));
     }
 
     @Test
-    void updateVoteAfterDeadLine(){
+    void updateVoteAfterDeadLine() {
         service.setClockAndTimeZone(LocalDateTime.of(voteDate, voteTimeAfter));
         Vote newVote = service.doVote(USER_ID, RESTAURANT_2_ID);
         assertThat(newVote).isNull();

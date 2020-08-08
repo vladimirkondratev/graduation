@@ -96,15 +96,15 @@
                             </dependency>
                         </dependencies>
                     </container>
-                    <configuration>
-                        <configfiles>
-                            <configfile>
-                                <file>src/main/resources/tomcat/context-db-${db.type}.xml</file>
-                                <todir>conf/Catalina/localhost/</todir>
-                                <tofile>${project.build.finalName}.xml</tofile>
-                            </configfile>
-                        </configfiles>
-                    </configuration>
+<!--                    <configuration>-->
+<!--                        <configfiles>-->
+<!--                            <configfile>-->
+<!--                                <file>src/main/resources/tomcat/context-db-${db.type}.xml</file>-->
+<!--                                <todir>conf/Catalina/localhost/</todir>-->
+<!--                                <tofile>${project.build.finalName}.xml</tofile>-->
+<!--                            </configfile>-->
+<!--                        </configfiles>-->
+<!--                    </configuration>-->
                     <deployables>
                         <deployable>
                             <groupId>ru</groupId>

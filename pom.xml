@@ -19,7 +19,6 @@
         <logName>graduation.log</logName>
         <dbPath>${project.basedir}/db/</dbPath>
         <dbName>graduation.db</dbName>
-        <skipTests>true</skipTests>
 
         <!-- Build -->
         <cargo-maven2-plugin.version>1.7.10</cargo-maven2-plugin.version>
@@ -96,15 +95,6 @@
                             </dependency>
                         </dependencies>
                     </container>
-<!--                    <configuration>-->
-<!--                        <configfiles>-->
-<!--                            <configfile>-->
-<!--                                <file>src/main/resources/tomcat/context-db-${db.type}.xml</file>-->
-<!--                                <todir>conf/Catalina/localhost/</todir>-->
-<!--                                <tofile>${project.build.finalName}.xml</tofile>-->
-<!--                            </configfile>-->
-<!--                        </configfiles>-->
-<!--                    </configuration>-->
                     <deployables>
                         <deployable>
                             <groupId>ru</groupId>
@@ -309,12 +299,6 @@
     <profiles>
         <profile>
             <id>test</id>
-            <activation>
-                <property>
-                    <name>act</name>
-                    <value>test</value>
-                </property>
-            </activation>
             <properties>
                 <db.type>mem</db.type>
                 <db.name>${dbName}</db.name>
@@ -342,7 +326,7 @@
                 <db.type>file</db.type>
                 <db.name>${dbPath}${dbName}</db.name>
                 <db.init>false</db.init>
-                <maven.test.skip>${skipTests}</maven.test.skip>
+                <maven.test.skip>true</maven.test.skip>
             </properties>
         </profile>
     </profiles>

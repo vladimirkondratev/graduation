@@ -27,11 +27,11 @@ public class AdminRestaurantRestController {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    static final String REST_URL = "/rest/admin/restaurants";
+    public static final String REST_URL = "/rest/admin/restaurants";
 
-    static final String MENUS_REST_URL = "/{restaurantId}/menus";
+    public static final String MENUS_REST_URL = "/{restaurantId}/menus";
 
-    static final String DISH_REST_URL = MENUS_REST_URL + "/{menuId}/dishes";
+    public static final String DISH_REST_URL = MENUS_REST_URL + "/{menuId}/dishes";
 
     private final RestaurantService restaurantService;
 

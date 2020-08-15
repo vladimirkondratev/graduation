@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.graduation.model.Role;
 import ru.graduation.model.User;
 import ru.graduation.service.UserService;
-import ru.graduation.testdata.UserTestData;
 import ru.graduation.util.exeption.ErrorType;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
@@ -35,7 +34,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(UserTestData.jsonWithPassword(newUser, "newPass")))
+                .content(jsonWithPassword(newUser, "newPass")))
                 .andExpect(status().isCreated());
 
         User created = readFromJson(action, User.class);
@@ -51,7 +50,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.put(REST_URL + USER_ID)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(UserTestData.jsonWithPassword(updated, "newPass")))
+                .content(jsonWithPassword(updated, "newPass")))
                 .andExpect(status().isNoContent());
         USER_MATCHER.assertMatch(userService.get(USER_ID), updated);
     }
@@ -61,7 +60,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
     void createDuplicateEmail() throws Exception {
         User newUser = getNew();
         newUser.setEmail(USER.getEmail());
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL)
+        perform(MockMvcRequestBuilders.post(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newUser)))
@@ -123,15 +122,6 @@ class AdminRestControllerTest extends AbstractControllerTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(USER_MATCHER.contentJson(USER));
     }
-
-//    @Test
-//    void delete() throws Exception {
-//        perform(MockMvcRequestBuilders.delete(REST_URL + USER_ID)
-//                .with(userHttpBasic(ADMIN)))
-//                .andDo(print())
-//                .andExpect(status().isNoContent());
-//        assertThrows(NotFoundException.class, () -> userService.get(USER_ID));
-//    }
 
     @Test
     void deleteNotFound() throws Exception {

@@ -18,7 +18,7 @@ import static ru.graduation.testdata.VoteTestData.*;
 class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
-    VoteService service;
+    private VoteService service;
 
     @Test
     void doNewVote() {

@@ -47,7 +47,7 @@ class ProfileRestControllerTest extends AbstractControllerTest {
     @Transactional(propagation = Propagation.NEVER)
     void registerDuplicateEmail() throws Exception {
         UserTo newTo = new UserTo(null, "newName", USER.getEmail(), "newPassword");
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + "/register")
+        perform(MockMvcRequestBuilders.post(REST_URL + "/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newTo)))
                 .andExpect(status().isUnprocessableEntity())

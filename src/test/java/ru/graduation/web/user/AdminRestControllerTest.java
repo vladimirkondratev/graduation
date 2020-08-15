@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.graduation.TestUtil.readFromJson;
 import static ru.graduation.TestUtil.userHttpBasic;
-import static ru.graduation.testdata.UserTestData.*;
+import static ru.graduation.testdata.UserTestUtil.*;
 
 class AdminRestControllerTest extends AbstractControllerTest {
 

@@ -3,7 +3,7 @@ package ru.graduation.testdata;
 import ru.graduation.TestMatcher;
 import ru.graduation.model.Dish;
 
-public class DishTestData {
+public class DishTestUtil {
 
     public static TestMatcher<Dish> DISH_MATCHER = TestMatcher.usingFieldsComparator(Dish.class,"menu");
 

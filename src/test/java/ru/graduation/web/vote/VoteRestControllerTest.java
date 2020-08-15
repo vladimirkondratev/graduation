@@ -14,10 +14,10 @@ import java.time.LocalDate;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.graduation.TestUtil.readFromJson;
 import static ru.graduation.TestUtil.userHttpBasic;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1_ID;
-import static ru.graduation.testdata.UserTestData.*;
-import static ru.graduation.testdata.VoteTestData.VOTE_MATCHER;
-import static ru.graduation.testdata.VoteTestData.getNew;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1_ID;
+import static ru.graduation.testdata.UserTestUtil.*;
+import static ru.graduation.testdata.VoteTestUtil.VOTE_MATCHER;
+import static ru.graduation.testdata.VoteTestUtil.getNew;
 import static ru.graduation.web.vote.VoteRestController.REST_URL;
 
 class VoteRestControllerTest extends AbstractControllerTest {

@@ -8,7 +8,7 @@ import ru.graduation.web.json.JsonUtil;
 import java.util.Collections;
 import java.util.Date;
 
-public class UserTestData {
+public class UserTestUtil {
     public static final int SEQ = 100_000;
 
     public static final int ADMIN_ID = SEQ;

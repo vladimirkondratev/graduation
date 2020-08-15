@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.graduation.TestUtil.userHttpBasic;
-import static ru.graduation.testdata.UserTestData.USER;
+import static ru.graduation.testdata.UserTestUtil.USER;
 
 class UserRestaurantRestControllerTest extends AbstractControllerTest {
 

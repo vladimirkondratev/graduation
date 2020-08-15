@@ -8,9 +8,9 @@ import ru.graduation.util.exeption.NotFoundException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.graduation.testdata.MenuTestData.*;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1_ID;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_2_ID;
+import static ru.graduation.testdata.MenuTestUtil.*;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1_ID;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_2_ID;
 
 class MenuServiceTest extends AbstractServiceTest{
 

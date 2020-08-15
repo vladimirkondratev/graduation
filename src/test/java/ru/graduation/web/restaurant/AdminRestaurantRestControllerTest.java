@@ -11,9 +11,9 @@ import ru.graduation.model.Restaurant;
 import ru.graduation.service.DishService;
 import ru.graduation.service.MenuService;
 import ru.graduation.service.RestaurantService;
-import ru.graduation.testdata.DishTestData;
-import ru.graduation.testdata.MenuTestData;
-import ru.graduation.testdata.RestaurantTestData;
+import ru.graduation.testdata.DishTestUtil;
+import ru.graduation.testdata.MenuTestUtil;
+import ru.graduation.testdata.RestaurantTestUtil;
 import ru.graduation.util.exeption.NotFoundException;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
@@ -24,12 +24,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.graduation.TestUtil.readFromJson;
 import static ru.graduation.TestUtil.userHttpBasic;
-import static ru.graduation.testdata.DishTestData.DISH_1_ID;
-import static ru.graduation.testdata.DishTestData.DISH_MATCHER;
-import static ru.graduation.testdata.MenuTestData.*;
-import static ru.graduation.testdata.RestaurantTestData.*;
-import static ru.graduation.testdata.UserTestData.ADMIN;
-import static ru.graduation.testdata.UserTestData.USER;
+import static ru.graduation.testdata.DishTestUtil.DISH_1_ID;
+import static ru.graduation.testdata.DishTestUtil.DISH_MATCHER;
+import static ru.graduation.testdata.MenuTestUtil.*;
+import static ru.graduation.testdata.RestaurantTestUtil.*;
+import static ru.graduation.testdata.UserTestUtil.ADMIN;
+import static ru.graduation.testdata.UserTestUtil.USER;
 
 class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
@@ -48,7 +48,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void createRestaurant() throws Exception {
-        Restaurant newRestaurant = RestaurantTestData.getNew();
+        Restaurant newRestaurant = RestaurantTestUtil.getNew();
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -63,7 +63,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void update() throws Exception {
-        Restaurant updated = RestaurantTestData.getUpdated();
+        Restaurant updated = RestaurantTestUtil.getUpdated();
         perform(MockMvcRequestBuilders.put(REST_URL + RESTAURANT_1_ID)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -103,7 +103,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void createMenu() throws Exception {
-        Menu newMenu = MenuTestData.getNew();
+        Menu newMenu = MenuTestUtil.getNew();
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + MENUS_REST_URL, RESTAURANT_1_ID)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -118,7 +118,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void updateMenu() throws Exception {
-        Menu updated = MenuTestData.getUpdated();
+        Menu updated = MenuTestUtil.getUpdated();
         perform(MockMvcRequestBuilders.put(REST_URL + MENUS_REST_URL + MENU_1_ID, RESTAURANT_1_ID)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -138,7 +138,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void createDish() throws Exception {
-        Dish newDish = DishTestData.getNew();
+        Dish newDish = DishTestUtil.getNew();
         ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + DISH_REST_URL, RESTAURANT_1_ID, MENU_1_ID)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -153,7 +153,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void updateDish() throws Exception {
-        Dish updated = DishTestData.getUpdated();
+        Dish updated = DishTestUtil.getUpdated();
         perform(MockMvcRequestBuilders.put(REST_URL + DISH_REST_URL + DISH_1_ID, RESTAURANT_1_ID, MENU_1_ID)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)

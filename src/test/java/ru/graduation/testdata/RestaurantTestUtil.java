@@ -3,7 +3,7 @@ package ru.graduation.testdata;
 import ru.graduation.TestMatcher;
 import ru.graduation.model.Restaurant;
 
-public class RestaurantTestData {
+public class RestaurantTestUtil {
     public static final int RESTAURANT_1_ID = 100003;
     public static final int RESTAURANT_2_ID = 100004;
     public static final int RESTAURANT_3_ID_WITH_NO_MENU_AND_VOTES = 100005;

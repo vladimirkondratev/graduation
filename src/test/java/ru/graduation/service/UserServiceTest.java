@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.graduation.testdata.UserTestData.*;
+import static ru.graduation.testdata.UserTestUtil.*;
 
 class UserServiceTest extends AbstractServiceTest {
 

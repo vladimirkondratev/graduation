@@ -112,6 +112,14 @@ public class User extends AbstractNamedEntity implements HasIdAndEmail {
         this.registered = registered;
     }
 
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+
     @Override
     public String toString() {
         return "User{" +

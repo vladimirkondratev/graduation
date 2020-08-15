@@ -3,15 +3,15 @@ package ru.graduation.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.graduation.model.Dish;
-import ru.graduation.testdata.DishTestData;
+import ru.graduation.testdata.DishTestUtil;
 import ru.graduation.util.exeption.NotFoundException;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.graduation.testdata.DishTestData.*;
-import static ru.graduation.testdata.MenuTestData.MENU_1_ID;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1_ID;
+import static ru.graduation.testdata.DishTestUtil.*;
+import static ru.graduation.testdata.MenuTestUtil.MENU_1_ID;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1_ID;
 
 class DishServiceTest extends AbstractServiceTest{
 
@@ -20,7 +20,7 @@ class DishServiceTest extends AbstractServiceTest{
 
     @Test
     void create() {
-        Dish newDish = DishTestData.getNew();
+        Dish newDish = DishTestUtil.getNew();
         Dish created = service.create(new Dish(newDish), MENU_1_ID, RESTAURANT_1_ID);
         int newId = created.getId();
         newDish.setId(newId);

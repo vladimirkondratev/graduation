@@ -5,7 +5,7 @@ import ru.graduation.model.Menu;
 
 import java.time.LocalDate;
 
-public class MenuTestData {
+public class MenuTestUtil {
 
     public static TestMatcher<Menu> MENU_MATCHER = TestMatcher.usingFieldsComparator(Menu.class, "restaurant", "dishes");
 

@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1_ID;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_2_ID;
-import static ru.graduation.testdata.UserTestData.ADMIN_ID;
-import static ru.graduation.testdata.UserTestData.USER_ID;
-import static ru.graduation.testdata.VoteTestData.*;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1_ID;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_2_ID;
+import static ru.graduation.testdata.UserTestUtil.ADMIN_ID;
+import static ru.graduation.testdata.UserTestUtil.USER_ID;
+import static ru.graduation.testdata.VoteTestUtil.*;
 
 class VoteServiceTest extends AbstractServiceTest {
 

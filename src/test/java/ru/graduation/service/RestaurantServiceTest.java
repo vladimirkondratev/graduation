@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.graduation.testdata.RestaurantTestData.*;
+import static ru.graduation.testdata.RestaurantTestUtil.*;
 
 class RestaurantServiceTest extends AbstractServiceTest{
 

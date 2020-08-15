@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static ru.graduation.model.Vote.deadLine;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_1;
-import static ru.graduation.testdata.RestaurantTestData.RESTAURANT_2;
-import static ru.graduation.testdata.UserTestData.ADMIN;
-import static ru.graduation.testdata.UserTestData.USER;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1;
+import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_2;
+import static ru.graduation.testdata.UserTestUtil.ADMIN;
+import static ru.graduation.testdata.UserTestUtil.USER;
 
-public class VoteTestData {
+public class VoteTestUtil {
 
     public static LocalDate voteDate = LocalDate.of(2020, 3, 25);
     public static LocalTime voteTimeBefore = deadLine.minusHours(2);

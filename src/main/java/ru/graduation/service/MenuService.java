@@ -27,9 +27,8 @@ public class MenuService {
 
     @Transactional
     @CacheEvict(value = "restaurants", allEntries = true)
-    public Menu create(Menu menu, Integer restaurantId) {
+    public Menu create(Menu menu, int restaurantId) {
         Assert.notNull(menu, "menu must not be null");
-        Assert.notNull(restaurantId, "restaurant must not be null");
         Restaurant restaurant = checkNotFoundWithId(restaurantRepository.getOne(restaurantId), restaurantId);
         menu.setRestaurant(restaurant);
         return menuRepository.save(menu);

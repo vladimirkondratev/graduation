@@ -45,14 +45,13 @@ public class VoteService {
         this.clock = Clock.fixed(dateTime.atZone(zoneId).toInstant(), zoneId);
     }
 
-    public Vote doVote(Integer userId, Integer restaurantId) {
+    public Vote doVote(Integer userId, int restaurantId) {
         Assert.notNull(userId, "userId must not be null");
-        Assert.notNull(restaurantId, "restaurantId must not be null");
         return doVote(userId, restaurantId, LocalDate.now(clock), LocalTime.now(clock));
     }
 
     @Transactional
-    public Vote doVote(Integer userId, Integer restaurantId, LocalDate date, LocalTime time){
+    public Vote doVote(int userId, int restaurantId, LocalDate date, LocalTime time){
         Vote vote = voteRepository.findByUserIdAndDate(userId, date);
         User user = userRepository.getOne(userId);
         Restaurant restaurant = restaurantRepository.getOne(restaurantId);

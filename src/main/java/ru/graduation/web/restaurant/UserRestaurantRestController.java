@@ -18,7 +18,7 @@ public class UserRestaurantRestController {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    public static final String REST_URL = "/rest/user/restaurants";
+    public static final String REST_URL = "/restaurants";
 
     private final RestaurantService restaurantService;
 

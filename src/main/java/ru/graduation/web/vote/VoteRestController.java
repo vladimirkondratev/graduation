@@ -39,7 +39,7 @@ public class VoteRestController {
      *      * {@code 200 OK} if vote change was successful or
      *      * {@code 422 "Unprocessable Entity"} if vote change was not successful
      */
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<Vote> vote(@RequestParam int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser) {
         log.info("vote for restaurant: {}", restaurantId);
         Vote created = voteService.doVote(authUser.getId(), restaurantId);

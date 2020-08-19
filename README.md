@@ -101,7 +101,7 @@ Time is defined by default server system timezone.
 
 | Role | Path                      |  Method   | Description        |
 |------|---------------------------|-----------|--------------------|
-| Admin| [`/admin/users/{id}`]|   `PATCH` | En-/disable user   |
+| Admin| [`/admin/users/{id}`]|   `PATCH` | Enable/disable user   |
 
 * **URL Params**\
     enabled=boolean
@@ -226,6 +226,8 @@ Time is defined by default server system timezone.
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|
 | User| [`/votes`]|`POST` | Vote for restaurant |
+* **URL Params**\
+    restaurantId=int
 * **Example:**
 
 `curl -s -X POST http://localhost:8080/graduation/votes?restaurantId=100002 --user user@email.com:password`

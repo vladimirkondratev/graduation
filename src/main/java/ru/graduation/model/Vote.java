@@ -6,16 +6,10 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"date", "user_id", "restaurant_id"}, name = "user_vote_restaurant_idx")})
 public class Vote extends AbstractBaseEntity {
-
-    /**
-     * User can change his made vote before deadLine
-     */
-    public static LocalTime deadLine = LocalTime.of(11, 00);
 
     @NotNull
     private LocalDate date;

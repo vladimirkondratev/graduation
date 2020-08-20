@@ -7,7 +7,10 @@
     <import resource="spring-security.xml"/>
     <import resource="spring-cache.xml"/>
 
-<!--    <context:annotation-config/>-->
-    <context:component-scan base-package="ru.graduation.service"/>
+    <!--    <context:annotation-config/>-->
+    <context:component-scan base-package="ru.graduation.service, ru.graduation.util"/>
+
+    <context:property-placeholder location="file:${project.basedir}/config/app.properties" ignore-unresolvable="true"
+                                  system-properties-mode="OVERRIDE"/>
 
 </beans>

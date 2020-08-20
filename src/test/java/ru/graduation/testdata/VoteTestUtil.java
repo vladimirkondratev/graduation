@@ -6,11 +6,11 @@ import ru.graduation.model.Vote;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static ru.graduation.model.Vote.deadLine;
 import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1;
 import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_2;
 import static ru.graduation.testdata.UserTestUtil.ADMIN;
 import static ru.graduation.testdata.UserTestUtil.USER;
+import static ru.graduation.util.DeadLineTime.deadLine;
 
 public class VoteTestUtil {
 
@@ -30,6 +30,7 @@ public class VoteTestUtil {
     public static Vote getNew() {
         return new Vote(null, LocalDate.now(), ADMIN, RESTAURANT_1);
     }
+
     public static Vote getUpdated() {
         return new Vote(null, LocalDate.now(), USER, RESTAURANT_2);
     }

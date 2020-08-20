@@ -9,6 +9,7 @@ import ru.graduation.model.Vote;
 import ru.graduation.repository.RestaurantRepository;
 import ru.graduation.repository.UserRepository;
 import ru.graduation.repository.VoteRepository;
+import ru.graduation.util.DeadLineTime;
 
 import java.time.*;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 public class VoteService {
 
-    private final VoteRepository  voteRepository;
+    private final VoteRepository voteRepository;
 
     private final UserRepository userRepository;
 
@@ -39,6 +40,7 @@ public class VoteService {
     /**
      * for test purpose only, to test voting before and after deadLine.
      * Should be change to aspect.
+     *
      * @param dateTime
      */
     public void setClockAndTimeZone(LocalDateTime dateTime) {
@@ -51,14 +53,14 @@ public class VoteService {
     }
 
     @Transactional
-    public Vote doVote(int userId, int restaurantId, LocalDate date, LocalTime time){
+    public Vote doVote(int userId, int restaurantId, LocalDate date, LocalTime time) {
         Vote vote = voteRepository.findByUserIdAndDate(userId, date);
         User user = userRepository.getOne(userId);
         Restaurant restaurant = restaurantRepository.getOne(restaurantId);
-        if (vote == null){
+        if (vote == null) {
             return voteRepository.save(new Vote(null, date, user, restaurant));
         } else {
-            if (time.isBefore(Vote.deadLine)){
+            if (time.isBefore(DeadLineTime.deadLine)) {
                 vote.setRestaurant(restaurant);
                 return voteRepository.save(vote);
             } else {
@@ -67,14 +69,14 @@ public class VoteService {
         }
     }
 
-    public List<Vote> getAllForDate(LocalDate date){
-        if (date == null){
+    public List<Vote> getAllForDate(LocalDate date) {
+        if (date == null) {
             date = LocalDate.now(clock);
         }
         return voteRepository.findByDate(date);
     }
 
-    public Vote getForUserAndDate(int userId, LocalDate date){
+    public Vote getForUserAndDate(int userId, LocalDate date) {
         return voteRepository.findByUserIdAndDate(userId, date);
     }
 

@@ -1,5 +1,6 @@
 package ru.graduation.to;
 
+import org.hibernate.validator.constraints.SafeHtml;
 import ru.graduation.HasIdAndEmail;
 
 import javax.validation.constraints.Email;
@@ -13,11 +14,13 @@ public class UserTo extends BaseTo implements Serializable, HasIdAndEmail {
 
     @NotBlank
     @Size(min = 2, max = 100)
+    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
+    @SafeHtml
     private String email;
 
     @NotBlank

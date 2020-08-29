@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.graduation.model.Vote;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
@@ -23,19 +22,4 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
     @EntityGraph(attributePaths = {"restaurant", "user"}, type = EntityGraph.EntityGraphType.LOAD)
     Vote findByUserIdAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
-
-    @EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)
-    List<Vote> findByDate(@Param("date") LocalDate date);
-
-//    TODO
-//    @Query("SELECT v FROM Vote v WHERE v.id=:voteId AND v.user.id=:userId")
-//    Vote get(@Param("voteId") int dishId, @Param("userId") int userId);
-//    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId AND v.date=:date")
-//    Vote getForUserAndDate(@Param("userId") int userId, @Param("date") LocalDate date);
-//    @Query("SELECT v FROM Vote v WHERE v.date=:date")
-//    List<Vote> getAllForDate(@Param("date") LocalDate date);
-//    @Query("SELECT v FROM Vote v WHERE v.user.id=:userId")
-//    List<Vote> getAllByUser(@Param("userId") int userId);//
-//    @Query("SELECT v FROM Vote v WHERE v.restaurant.id=:restaurantId")
-//    List<Vote> getAllByRestaurant(@Param("restaurantId") int restaurantId);
 }

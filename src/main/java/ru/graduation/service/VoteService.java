@@ -12,7 +12,6 @@ import ru.graduation.repository.VoteRepository;
 import ru.graduation.util.DeadLineTime;
 
 import java.time.*;
-import java.util.List;
 
 @Service
 public class VoteService {
@@ -68,27 +67,4 @@ public class VoteService {
             }
         }
     }
-
-    public List<Vote> getAllForDate(LocalDate date) {
-        if (date == null) {
-            date = LocalDate.now(clock);
-        }
-        return voteRepository.findByDate(date);
-    }
-
-    public Vote getForUserAndDate(int userId, LocalDate date) {
-        return voteRepository.findByUserIdAndDate(userId, date);
-    }
-
-//    TODO
-//    public List<Vote> getAllForRestaurant(int restaurantId) {
-//        return voteRepository.getAllByRestaurant(restaurantId);
-//    }
-//    public List<Vote> getAllForUser(int userId) {
-//        return voteRepository.getAllByUser(userId);
-//    }
-//    public int delete(int voteId, int userId) {
-//        return checkNotFound(voteRepository.delete(voteId, userId), "");
-//    }
-
 }

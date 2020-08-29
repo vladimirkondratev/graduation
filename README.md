@@ -48,7 +48,7 @@ Project will be deployed at *graduation* application context
  * User can do:
     - viewing restaurants, it's lunch menu and dishes for today.
     - voting and update vote for a restaurant before 11:00.
-    - viewing vote results for a day.
+ 
     
 Time is defined by default server system timezone.
 ### Curl commands REST API
@@ -231,12 +231,3 @@ Time is defined by default server system timezone.
 * **Example:**
 
 `curl -s -X POST http://localhost:8080/graduation/votes?restaurantId=100002 --user user@email.com:password`
-
-| Role | Path                         |  Method | Description         |
-|------|------------------------------|---------|---------------------|
-| User| [`/votes`]  |   `GET` | Get all votes for day |
-* **URL Params**\
-    date=yyyy-mm-dd
-* **Example:**
-
-`curl -s http://localhost:8080/graduation/votes?date=2020-06-25 --user user@email.com:password`

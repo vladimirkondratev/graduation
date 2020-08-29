@@ -5,17 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.Nullable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.graduation.AuthorizedUser;
 import ru.graduation.model.Vote;
 import ru.graduation.service.VoteService;
 
 import java.net.URI;
-import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = VoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -50,11 +50,5 @@ public class VoteRestController {
             return ResponseEntity.created(uriOfNewResource).body(created);
         }
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
-    }
-
-    @GetMapping
-    public List<Vote> getAllForDate(@RequestParam @Nullable LocalDate date){
-        log.info("get votes for {}", date);
-        return voteService.getAllForDate(date);
     }
 }

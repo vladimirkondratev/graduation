@@ -51,6 +51,11 @@ Project will be deployed at *graduation* application context
  
     
 Time is defined by default server system timezone.
+
+####Swagger API specification:
+http://localhost:8080/graduation/swagger-ui.html
+http://localhost:8080/graduation/v2/api-docs
+
 ### Curl commands REST API
 ### Admin API
 #### Admin Profile API

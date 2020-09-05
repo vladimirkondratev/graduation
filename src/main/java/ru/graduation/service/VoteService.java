@@ -67,4 +67,8 @@ public class VoteService {
             }
         }
     }
+
+    public Vote getForUserAndDate(int userId, LocalDate date) {
+        return voteRepository.findByUserIdAndDate(userId, date);
+    }
 }

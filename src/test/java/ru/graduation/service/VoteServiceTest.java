@@ -6,7 +6,6 @@ import ru.graduation.model.Vote;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.graduation.testdata.RestaurantTestUtil.RESTAURANT_1_ID;
@@ -44,11 +43,5 @@ class VoteServiceTest extends AbstractServiceTest {
         Vote newVote = service.doVote(USER_ID, RESTAURANT_2_ID);
         assertThat(newVote).isNull();
         VOTE_MATCHER.assertMatch(VOTE_2, service.getForUserAndDate(USER_ID, voteDate));
-    }
-
-    @Test
-    void getAllForDate() {
-        List<Vote> votes = service.getAllForDate(voteDate);
-        VOTE_MATCHER.assertMatch(votes, VOTE_1, VOTE_2);
     }
 }

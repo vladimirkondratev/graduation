@@ -3,8 +3,10 @@ package ru.graduation.web.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import ru.graduation.HasId;
 import ru.graduation.model.User;
 import ru.graduation.service.UserService;
 import ru.graduation.to.UserTo;
@@ -18,15 +20,21 @@ import static ru.graduation.util.ValidationUtil.checkNew;
 public abstract class AbstractUserController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
+    // Validate manually cause UniqueMailValidator doesn't work for update with user.id==null
+    private WebDataBinder binder;
+
     @Autowired
-    private UserService service;
+    protected UserService service;
 
     @Autowired
     private UniqueMailValidator emailValidator;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(emailValidator);
+        if (binder.getTarget() != null && emailValidator.supports(binder.getTarget().getClass())) {
+            binder.addValidators(emailValidator);
+            this.binder = binder;
+        }
     }
 
     public List<User> getAll() {
@@ -55,10 +63,14 @@ public abstract class AbstractUserController {
         service.delete(id);
     }
 
-    public void update(User user, int id) {
+    protected void checkAndValidateForUpdate(HasId user, int id) throws BindException {
         log.info("update {} with id={}", user, id);
         assureIdConsistent(user, id);
-        service.update(user);
+//        checkModificationAllowed(id);
+        binder.validate();
+        if (binder.getBindingResult().hasErrors()) {
+            throw new BindException(binder.getBindingResult());
+        }
     }
 
     public void update(UserTo userTo, int id) {

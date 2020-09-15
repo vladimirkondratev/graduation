@@ -65,35 +65,35 @@ http://localhost:8080/graduation/v2/api-docs
 | Admin| [`/admin/users`]|   `GET` | Get all users |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/admin/users --user admin@email.com:password`
+`curl -s http://localhost:8080/graduation/admin/users --user admin@email.ru:password`
 
 | Role | Path                      |  Method | Description    |
 |------|---------------------------|---------|----------------|
 | Admin| [`/admin/users/{id}`]|   `GET` | Get user by id |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/admin/users/100000 --user admin@email.com:password`
+`curl -s http://localhost:8080/graduation/admin/users/100000 --user admin@email.ru:password`
 
 | Role | Path                      |  Method | Description    |
 |------|---------------------------|---------|----------------|
 | Admin| [`/admin/users/by/{e-mail}`]|   `GET` | Get user by e-mail |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/admin/users/by/user@email.ru --user admin@email.com:password`
+`curl -s http://localhost:8080/graduation/admin/users/by/user@email.ru --user admin@email.ru:password`
 
 | Role | Path                 |  Method  | Description |
 |------|----------------------|----------|-------------|
 | Admin| [`/admin/users`]|   `POST` | Create user |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"New_user","email":"newuser@email.com","password":"password","roles":["ROLE_USER"]}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/users --user admin@email.com:password`
+`curl -s -X POST -d '{"name":"New_user","email":"newuser@email.ru","password":"password","roles":["USER"]}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/users --user admin@email.ru:password`
 
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|
 | Admin| [`/admin/users/{id}`]|   `PUT` | Update user |
 * **Example:**
 
-`curl -s -X PUT -d '{"id":100000,"name":"Updated","email":"admin@email.com","roles":["ROLE_USER","ROLE_ADMIN"]}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/users/100000 --user admin@email.com:password`
+`curl -s -X PUT -d '{"id":100000,"name":"Updated","email":"admin@email.ru","roles":["USER","ADMIN"]}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/users/100000 --user admin@email.com:password`
 
 
 | Role | Path                      |  Method | Description |
@@ -101,7 +101,7 @@ http://localhost:8080/graduation/v2/api-docs
 | Admin| [`/admin/users/{id}`]|`DELETE` | Delete user |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8080/graduation/admin/users/100001 --user admin@email.com:password`
+`curl -s -X DELETE http://localhost:8080/graduation/admin/users/100001 --user admin@email.ru:password`
 
 
 | Role | Path                      |  Method   | Description        |
@@ -112,7 +112,7 @@ http://localhost:8080/graduation/v2/api-docs
     enabled=boolean
 * **Example:**
 
-`curl -s -X PATCH http://localhost:8080/graduation/admin/users/100001?enabled=false --user admin@email.com:password`
+`curl -s -X PATCH http://localhost:8080/graduation/admin/users/100001?enabled=false --user admin@email.ru:password`
 
 #### Admin Restaurant API
 
@@ -121,77 +121,77 @@ http://localhost:8080/graduation/v2/api-docs
 | Admin| [`/admin/restaurants`]  |   `GET` | Get all restaurants |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/admin/restaurants --user admin@email.com:password`
+`curl -s http://localhost:8080/graduation/admin/restaurants --user admin@email.ru:password`
 
 | Role | Path                              |  Method | Description          |
 |------|-----------------------------------|---------|----------------------|
 | Admin| [`/admin/restaurants/{id}`]  |   `GET` | Get restaurant by id |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/admin/restaurants/100002 --user admin@email.com:password`
+`curl -s http://localhost:8080/graduation/admin/restaurants/100002 --user admin@email.ru:password`
 
 | Role | Path                       |  Method  | Description       |
 |------|----------------------------|----------|-------------------|
 | Admin| [`/admin/restaurants`]|   `POST` | Create restaurant |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"New restaurant"}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/restaurants --user admin@email.com:password`
+`curl -s -X POST -d '{"name":"New restaurant"}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/restaurants --user admin@email.ru:password`
 
 | Role | Path                            |  Method | Description       |
 |------|---------------------------------|---------|-------------------|
 | Admin| [`/admin/restaurants/{id}`]|   `PUT` | Update restaurant |
 * **Example:**
 
-`curl -s -X PUT -d '{"id":100002,"name":"Updated"}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/restaurants/100002 --user admin@email.com:password`
+`curl -s -X PUT -d '{"id":100002,"name":"Updated"}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/restaurants/100002 --user admin@email.ru:password`
 
 | Role | Path                            |  Method | Description       |
 |------|---------------------------------|---------|-------------------|
 | Admin| [`/admin/restaurants/{id}`]|`DELETE` | Delete restaurant |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8080/graduation/admin/restaurants/100002 --user admin@email.com:password`
+`curl -s -X DELETE http://localhost:8080/graduation/admin/restaurants/100002 --user admin@email.ru:password`
 
 | Role | Path                       |  Method  | Description       |
 |------|----------------------------|----------|-------------------|
 | Admin| [`/admin/restaurants/{id}/menus`]|   `POST` | Create menu |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"New menu"}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus --user admin@email.com:password`
+`curl -s -X POST -d '{"name":"New menu"}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus --user admin@email.ru:password`
 
 | Role | Path                            |  Method | Description       |
 |------|---------------------------------|---------|-------------------|
 | Admin| [`/rest/admin/restaurants/{id}/menus/{id}`]|   `PUT` | Update menu |
 * **Example:**
 
-`curl -s -X PUT -d '{"id":100002,"name":"Updated"}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus/100005 --user admin@email.com:password`
+`curl -s -X PUT -d '{"id":100002,"name":"Updated"}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus/100005 --user admin@email.ru:password`
 
 | Role | Path                            |  Method | Description       |
 |------|---------------------------------|---------|-------------------|
 | Admin| [`/admin/restaurants/{id}/menus/{id}`]|`DELETE` | Delete menu |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8080/graduation/admin/restaurants/100002/menus/100005 --user admin@email.com:password`
+`curl -s -X DELETE http://localhost:8080/graduation/admin/restaurants/100002/menus/100005 --user admin@email.ru:password`
 
 | Role | Path                       |  Method  | Description       |
 |------|----------------------------|----------|-------------------|
 | Admin| [`/admin/restaurants/{id}/menus/{id}/dishes`]|   `POST` | Create dish |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"New dish"}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus/100005/dishes --user admin@email.com:password`
+`curl -s -X POST -d '{"name":"New dish"}' -H 'Content-Type:application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus/100005/dishes --user admin@email.ru:password`
 
 | Role | Path                            |  Method | Description       |
 |------|---------------------------------|---------|-------------------|
 | Admin| [`/admin/restaurants/{id}/menus/{id}/dishes/{id}`]|   `PUT` | Update dish |
 * **Example:**
 
-`curl -s -X PUT -d '{"id":100010,"name":"Updated"}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus/100005/dishes/{100010} --user admin@email.com:password`
+`curl -s -X PUT -d '{"id":100010,"name":"Updated"}' -H 'Content-type: application/json' http://localhost:8080/graduation/admin/restaurants/100002/menus/100005/dishes/{100010} --user admin@email.ru:password`
 
 | Role | Path                            |  Method | Description       |
 |------|---------------------------------|---------|-------------------|
 | Admin| [`/admin/restaurants/{id}/menus/{id}/dishes/{id}`]|`DELETE` | Delete dish |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8080/graduation/admin/restaurants/100002/menus/100005/dishes/100010 --user admin@email.com:password`
+`curl -s -X DELETE http://localhost:8080/graduation/admin/restaurants/100002/menus/100005/dishes/100010 --user admin@email.ru:password`
 
 
 ### User API
@@ -202,14 +202,14 @@ http://localhost:8080/graduation/v2/api-docs
 | User| [`/profile/register`]|   `POST` | Register new user |
 * **Example:**
 
-`curl -s -X POST -d '{"name":"New_user","email":"newuser@email.com","password":"password","roles":["ROLE_USER"]}' -H 'Content-Type:application/json' http://localhost:8080/graduation/profile/register --user admin@email.com:password`
+`curl -s -X POST -d '{"name":"New_user","email":"newuser@email.com","password":"password","roles":["USER"]}' -H 'Content-Type:application/json' http://localhost:8080/graduation/profile/register --user admin@email.ru:password`
 
 | Role | Path                      |  Method | Description |
 |------|---------------------------|---------|-------------|
 | User| [`/profile/{id}`]|   `PUT` | Update user |
 * **Example:**
 
-`curl -s -X PUT -d '{"id":100001,"name":"Updated","email":"user@email.com","roles":["ROLE_USER"]}' -H 'Content-type: application/json' http://localhost:8080/graduation/profile/100001 --user user@email.com:password`
+`curl -s -X PUT -d '{"id":100001,"name":"Updated","email":"user@email.com","roles":["USER"]}' -H 'Content-type: application/json' http://localhost:8080/graduation/profile/100001 --user user@email.ru:password`
 
 
 | Role | Path                      |  Method | Description |
@@ -217,7 +217,7 @@ http://localhost:8080/graduation/v2/api-docs
 | User| [`/profile/{id}`]|`DELETE` | Delete user |
 * **Example:**
 
-`curl -s -X DELETE http://localhost:8080/graduation/profile/100001 --user user@email.com:password`
+`curl -s -X DELETE http://localhost:8080/graduation/profile/100001 --user user@email.ru:password`
 
 #### User Restaurant API
 | Role | Path                         |  Method | Description         |
@@ -225,7 +225,7 @@ http://localhost:8080/graduation/v2/api-docs
 | User| [`/restaurants`]  |   `GET` | Get all restaurants with dishes for today |
 * **Example:**
 
-`curl -s http://localhost:8080/graduation/restaurants --user user@email.com:password`
+`curl -s http://localhost:8080/graduation/restaurants --user user@email.ru:password`
 
 #### User Vote API
 | Role | Path                      |  Method | Description |
@@ -235,4 +235,4 @@ http://localhost:8080/graduation/v2/api-docs
     restaurantId=int
 * **Example:**
 
-`curl -s -X POST http://localhost:8080/graduation/votes?restaurantId=100002 --user user@email.com:password`
+`curl -s -X POST http://localhost:8080/graduation/votes?restaurantId=100002 --user user@email.ru:password`

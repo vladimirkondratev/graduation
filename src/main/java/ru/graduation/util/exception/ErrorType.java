@@ -1,4 +1,4 @@
-package ru.graduation.util.exeption;
+package ru.graduation.util.exception;
 
 import org.springframework.http.HttpStatus;
 

@@ -14,7 +14,7 @@ import ru.graduation.service.RestaurantService;
 import ru.graduation.testdata.DishTestUtil;
 import ru.graduation.testdata.MenuTestUtil;
 import ru.graduation.testdata.RestaurantTestUtil;
-import ru.graduation.util.exeption.NotFoundException;
+import ru.graduation.util.exception.NotFoundException;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
 

@@ -2,9 +2,9 @@ package ru.graduation.util;
 
 import org.slf4j.Logger;
 import ru.graduation.HasId;
-import ru.graduation.util.exeption.ErrorType;
-import ru.graduation.util.exeption.IllegalRequestDataException;
-import ru.graduation.util.exeption.NotFoundException;
+import ru.graduation.util.exception.ErrorType;
+import ru.graduation.util.exception.IllegalRequestDataException;
+import ru.graduation.util.exception.NotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 

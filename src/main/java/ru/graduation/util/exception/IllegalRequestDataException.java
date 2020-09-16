@@ -1,4 +1,4 @@
-package ru.graduation.util.exeption;
+package ru.graduation.util.exception;
 
 public class IllegalRequestDataException extends RuntimeException {
     public IllegalRequestDataException(String msg) {

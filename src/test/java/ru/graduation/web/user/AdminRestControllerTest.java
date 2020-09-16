@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.graduation.model.Role;
 import ru.graduation.model.User;
 import ru.graduation.service.UserService;
-import ru.graduation.util.exeption.ErrorType;
+import ru.graduation.util.exception.ErrorType;
 import ru.graduation.web.AbstractControllerTest;
 import ru.graduation.web.json.JsonUtil;
 

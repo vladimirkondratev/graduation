@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import ru.graduation.util.ValidationUtil;
-import ru.graduation.util.exeption.*;
+import ru.graduation.util.exception.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-import static ru.graduation.util.exeption.ErrorType.*;
+import static ru.graduation.util.exception.ErrorType.*;
 
 @RestControllerAdvice(annotations = RestController.class)
 @Order(Ordered.HIGHEST_PRECEDENCE + 5)

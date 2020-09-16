@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.graduation.model.Dish;
 import ru.graduation.testdata.DishTestUtil;
-import ru.graduation.util.exeption.NotFoundException;
+import ru.graduation.util.exception.NotFoundException;
 
 import java.util.List;
 

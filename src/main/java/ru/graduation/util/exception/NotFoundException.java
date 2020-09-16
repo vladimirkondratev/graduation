@@ -1,4 +1,4 @@
-package ru.graduation.util.exeption;
+package ru.graduation.util.exception;
 
 public class NotFoundException extends ApplicationException {
     public static final String NOT_FOUND_EXCEPTION = "exception.common.notFound";

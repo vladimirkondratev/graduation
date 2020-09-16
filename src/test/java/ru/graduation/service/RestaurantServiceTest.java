@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import ru.graduation.model.Restaurant;
-import ru.graduation.util.exeption.NotFoundException;
+import ru.graduation.util.exception.NotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;

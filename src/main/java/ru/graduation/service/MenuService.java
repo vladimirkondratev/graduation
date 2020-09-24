@@ -44,7 +44,7 @@ public class MenuService {
 
     @CacheEvict(value = "restaurants", allEntries = true)
     public void delete(int menuId, int restaurantId) {
-        checkNotFoundWithId(menuRepository.delete(menuId, restaurantId) != 0, restaurantId);
+        checkNotFoundWithId(menuRepository.delete(menuId, restaurantId) != 0, menuId);
     }
 
     public Menu get(int menuId, int restaurantId) {

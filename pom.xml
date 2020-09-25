@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru</groupId>
-    <artifactId>graduation</artifactId>
+    <artifactId>restaurant_voting</artifactId>
     <packaging>war</packaging>
 
     <version>1.0-SNAPSHOT</version>
@@ -53,7 +53,7 @@
     </properties>
 
     <build>
-        <finalName>graduation</finalName>
+        <finalName>restaurant_voting</finalName>
         <defaultGoal>package</defaultGoal>
         <plugins>
             <plugin>
@@ -99,7 +99,7 @@
                     <deployables>
                         <deployable>
                             <groupId>ru</groupId>
-                            <artifactId>graduation</artifactId>
+                            <artifactId>restaurant_voting</artifactId>
                             <type>war</type>
                             <properties>
                                 <context>${project.build.finalName}</context>

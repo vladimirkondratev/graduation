@@ -10,14 +10,14 @@
 
     <mvc:default-servlet-handler/>
 
-    <context:component-scan base-package="ru.graduation.web">
+    <context:component-scan base-package="ru.restaurant_voting.web">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.ControllerAdvice" />
     </context:component-scan>
 
-    <bean class="ru.graduation.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
+    <bean class="ru.restaurant_voting.web.json.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
     <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 
@@ -43,8 +43,8 @@
     <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
         <property name="formatters">
             <set>
-                <bean class="ru.graduation.web.converter.DateTimeFormatters.LocalTimeFormatter"/>
-                <bean class="ru.graduation.web.converter.DateTimeFormatters.LocalDateFormatter"/>
+                <bean class="ru.restaurant_voting.web.converter.DateTimeFormatters.LocalTimeFormatter"/>
+                <bean class="ru.restaurant_voting.web.converter.DateTimeFormatters.LocalDateFormatter"/>
             </set>
         </property>
     </bean>

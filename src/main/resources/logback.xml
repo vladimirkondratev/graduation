@@ -20,7 +20,7 @@
         </encoder>
     </appender>
 
-    <logger name="ru.graduation" level="debug"/>
+    <logger name="ru.restaurant_voting" level="debug"/>
     <logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="debug"/>
     <logger name="org.springframework.security" level="debug"/>
 

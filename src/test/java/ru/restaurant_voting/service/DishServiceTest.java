@@ -3,7 +3,6 @@ package ru.restaurant_voting.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.restaurant_voting.model.Dish;
-import ru.restaurant_voting.testdata.DishTestUtil;
 import ru.restaurant_voting.util.exception.NotFoundException;
 
 import java.util.List;
@@ -20,7 +19,7 @@ class DishServiceTest extends AbstractServiceTest{
 
     @Test
     void create() {
-        Dish newDish = DishTestUtil.getNew();
+        Dish newDish = getNew();
         Dish created = service.create(new Dish(newDish), MENU_1_ID, RESTAURANT_1_ID);
         int newId = created.getId();
         newDish.setId(newId);

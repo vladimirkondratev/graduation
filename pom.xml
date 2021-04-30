@@ -26,7 +26,7 @@
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
 
-        <spring.version>5.2.5.RELEASE</spring.version>
+        <spring.version>5.2.9.RELEASE</spring.version>
         <spring.security.version>5.3.1.RELEASE</spring.security.version>
         <spring-data-jpa.version>2.2.6.RELEASE</spring-data-jpa.version>
         <tomcat.version>9.0.33</tomcat.version>
